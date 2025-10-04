@@ -2,7 +2,7 @@ class_name Puzzle
 extends Node2D
 
 @export var player: Player
-var tiles: Dictionary[Vector2i, Tile] # position of the tile - tile
+@export var tiles: Dictionary[Vector2i, Tile] # position of the tile - tile
 
 
 func set_level():

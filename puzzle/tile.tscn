@@ -1,5 +1,10 @@
-[gd_scene format=3 uid="uid://6f8e0sh8jlue"]
+[gd_scene load_steps=2 format=3 uid="uid://6f8e0sh8jlue"]
+
+[ext_resource type="Script" uid="uid://d030bgbpo18ck" path="res://puzzle/tile.gd" id="1_wpn8y"]
 
 [node name="Tile" type="Node"]
+script = ExtResource("1_wpn8y")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Node" type="Node" parent="."]

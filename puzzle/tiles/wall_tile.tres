@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TileResource" load_steps=3 format=3 uid="uid://dgoxv0ujiq22s"]
+
+[ext_resource type="Script" uid="uid://bhgo8tgliywqc" path="res://puzzle/tiles/tile_resource.gd" id="1_d1l1o"]
+[ext_resource type="Script" uid="uid://cmfi73027ewbj" path="res://puzzle/property/block.gd" id="1_sbenr"]
+
+[resource]
+script = ExtResource("1_d1l1o")
+properties = Array[Script]([ExtResource("1_sbenr")])
+metadata/_custom_type_script = "uid://bhgo8tgliywqc"

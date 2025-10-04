@@ -3,7 +3,7 @@ extends TileProperty
 
 # this tile gives the player a power-up
 
-@export var power_up: PowerUp
+var power_up: PackedScene
 
 func _apply():
 	var player = Puzzle.get_puzzle(self).player

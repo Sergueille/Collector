@@ -8,7 +8,5 @@ func _apply():
 	if puzzle == null:
 		return
 	var player = puzzle.player
-	var next_player_position = player.current_position + player.movement_direction
-	
-	if next_player_position == get_tile(self).tile_position:
-		player.movement_direction = Vector2i.ZERO
+	if player.target_position == puzzle.tiles.find_key(get_tile(self)):
+		player.target_position = player.current_position

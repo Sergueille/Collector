@@ -59,6 +59,8 @@ func use_power_up(type: Globals.PowerUp):
 		return
 	for power_up in get_children().filter(func(x): return x is PowerUp):
 		if power_up.type == type:
+			if type == Globals.PowerUp.DASH:
+				power_up.dash_direction = movement_direction
 			power_up.activate()
 	power_ups[type] -= 1
 	sender.send_power_up_used(type)
@@ -71,30 +73,20 @@ func snap():
 func _input(event: InputEvent) -> void:
 	if moving:
 		return
-	var dash_direction := Vector2i.ZERO
-	
 	if event.is_action_pressed("up"):
-		dash_direction = Vector2i(0, -1)
+		movement_direction = Vector2i(0, -1)
 	if event.is_action_pressed("right"):
-		dash_direction = Vector2i(1, 0)
+		movement_direction = Vector2i(1, 0)
 	if event.is_action_pressed("down"):
-		dash_direction = Vector2i(0, 1)
+		movement_direction = Vector2i(0, 1)
 	if event.is_action_pressed("left"):
-		dash_direction = Vector2i(-1, 0)
+		movement_direction = Vector2i(-1, 0)
 	
 	# If a direction is pressed
-	if dash_direction != Vector2i.ZERO:
+	if movement_direction != Vector2i.ZERO:
 		# We check if shift is maintained
 		if Input.is_action_pressed("dash"):
-			for power_up in power_ups.values():
-				if power_up is Dash:
-					power_up.dash_direction = dash_direction
-					power_up.activate()
-		else:
-			# Else : just a normal movement
-			movement_direction = dash_direction
+			use_power_up(Globals.PowerUp.DASH)
 			
 	elif event.is_action_pressed("magnet"): # Activation du magnet
-				for power_up in power_ups.values():
-					if power_up is Magnet:
-						power_up.activate()
+		use_power_up(Globals.PowerUp.MAGNET)

@@ -20,6 +20,7 @@ func activate() -> void:
 	var current := player.current_position
 	var next := current + dash_direction
 	
+	# BUG player can dash through tiles with block property
 	while puzzle.tiles.has(next):
 		# NOT FINISHED : we have to stock the power up in the inventory
 		puzzle.tiles[next].set_activated(true)

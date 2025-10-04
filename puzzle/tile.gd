@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func set_activated(activated: bool):
 	self.activated = activated
+	print("activated!! ", tile_position)
 	# TODO update tile visually
 	# it is possible to add an animation by instancing an animation
 	# scene just on top of the tile or something

@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://cfv5mcvdefe8n"]
+[gd_scene load_steps=18 format=4 uid="uid://cfv5mcvdefe8n"]
 
 [ext_resource type="PackedScene" uid="uid://dfrt0ougkb0aa" path="res://puzzle/puzzle.tscn" id="1_yiny1"]
 [ext_resource type="Texture2D" uid="uid://cs2482ewy1udk" path="res://icon.svg" id="2_gcyel"]
 [ext_resource type="PackedScene" uid="uid://dbq18lsil75me" path="res://player/player.tscn" id="3_g7gbl"]
 [ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="4_ot56v"]
 [ext_resource type="Script" uid="uid://bhgo8tgliywqc" path="res://puzzle/tiles/tile_resource.gd" id="5_alx6q"]
-[ext_resource type="PackedScene" uid="uid://i0lcw04uwkwe" path="res://puzzle/property/block.tscn" id="7_wbbi2"]
 [ext_resource type="PackedScene" uid="uid://0ghb8n7ykg2l" path="res://UI/ingame_ui.tscn" id="8_fmwml"]
 [ext_resource type="Script" uid="uid://dinkxp3xvx17q" path="res://util/signal_bus/signal_bus_receiver.gd" id="9_03wjf"]
 [ext_resource type="Script" uid="uid://b4ydaqmdutsgq" path="res://util/signal_bus/signal_bus_sender.gd" id="10_j1p52"]
@@ -120,10 +119,9 @@ metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 
 [sub_resource type="Resource" id="Resource_ego48"]
 script = ExtResource("5_alx6q")
-properties = Array[PackedScene]([ExtResource("7_wbbi2")])
 metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 
-[node name="Puzzle" node_paths=PackedStringArray("player", "tiles", "tilemap", "ui") instance=ExtResource("1_yiny1")]
+[node name="Puzzle" node_paths=PackedStringArray("player", "tiles", "ui") instance=ExtResource("1_yiny1")]
 player = NodePath("Player")
 tiles = {
 Vector2i(-1, -1): NodePath("Tile3"),
@@ -132,9 +130,12 @@ Vector2i(0, -1): NodePath("Tile4"),
 Vector2i(0, 0): NodePath("Tile"),
 Vector2i(0, 1): NodePath("Tile6"),
 Vector2i(1, 0): NodePath("Tile5"),
-Vector2i(1, 1): NodePath("Tile7")
+Vector2i(1, 1): NodePath("Tile7"),
+Vector2i(2, 0): NodePath("Tile8"),
+Vector2i(3, 0): NodePath("Tile9"),
+Vector2i(4, 0): NodePath("Tile10"),
+Vector2i(5, 0): NodePath("Tile11")
 }
-tilemap = NodePath("TileMapLayer")
 ui = NodePath("CanvasLayer/IngameUI")
 
 [node name="TileMapLayer" parent="." index="0"]
@@ -171,15 +172,75 @@ data = SubResource("Resource_30kmg")
 [node name="Tile7" parent="." index="9" instance=ExtResource("4_ot56v")]
 data = SubResource("Resource_ego48")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="10"]
+[node name="Tile8" parent="." index="10" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile9" parent="." index="11" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile10" parent="." index="12" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile11" parent="." index="13" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile12" parent="." index="14" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile13" parent="." index="15" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile14" parent="." index="16" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile15" parent="." index="17" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile16" parent="." index="18" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile17" parent="." index="19" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile18" parent="." index="20" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile19" parent="." index="21" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile20" parent="." index="22" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile21" parent="." index="23" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile22" parent="." index="24" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile23" parent="." index="25" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile24" parent="." index="26" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile25" parent="." index="27" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile26" parent="." index="28" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="Tile27" parent="." index="29" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="30"]
 
 [node name="IngameUI" parent="CanvasLayer" index="0" instance=ExtResource("8_fmwml")]
 
-[node name="SignalBusReceiver" type="Node" parent="." index="11"]
+[node name="SignalBusReceiver" type="Node" parent="." index="31"]
 script = ExtResource("9_03wjf")
 metadata/_custom_type_script = "uid://dinkxp3xvx17q"
 
-[node name="SignalBusSender" type="Node" parent="." index="12"]
+[node name="SignalBusSender" type="Node" parent="." index="32"]
 script = ExtResource("10_j1p52")
 metadata/_custom_type_script = "uid://b4ydaqmdutsgq"
 

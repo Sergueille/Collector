@@ -21,8 +21,23 @@ offset_top = 57.0
 offset_right = 573.0
 offset_bottom = 160.0
 theme = ExtResource("1_jjnuu")
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 76
 text = "Power collect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Label"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -574.0
+offset_top = 131.0
+offset_right = 573.0
+offset_bottom = 214.0
+theme = ExtResource("1_jjnuu")
+theme_override_font_sizes/font_size = 60
+text = "Niveaux"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -33,6 +48,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -363.0
+offset_right = -296.0
 offset_bottom = -228.0
 alignment = 1
 
@@ -76,12 +92,11 @@ offset_right = 350.0
 offset_bottom = 50.0
 text = "5"
 
-[node name="CreditContainer" type="VBoxContainer" parent="."]
+[node name="CreditContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 630.0
-offset_top = 335.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_top = 472.0
+offset_right = 1035.0
+offset_bottom = 624.0
 alignment = 1
 
 [node name="CreditControl" type="Control" parent="CreditContainer"]
@@ -89,8 +104,9 @@ layout_mode = 2
 
 [node name="CreditButton" type="Button" parent="CreditContainer/CreditControl"]
 layout_mode = 0
-offset_right = 111.0
-offset_bottom = 62.0
+offset_right = 133.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 22
 text = "Crédits"
 
 [connection signal="pressed" from="HBoxContainer/Control/PlayButton1" to="HBoxContainer/Control" method="_on_play_button_1_pressed"]

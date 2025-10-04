@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://0ghb8n7ykg2l"]
+[gd_scene load_steps=9 format=3 uid="uid://0ghb8n7ykg2l"]
 
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_mjlmo"]
 [ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_8d257"]
 [ext_resource type="PackedScene" uid="uid://bleuowoor1sc2" path="res://UI/inventory_item.tscn" id="2_mjlmo"]
 [ext_resource type="Texture2D" uid="uid://cvnqx2rqm0ibf" path="res://sprites/dash.svg" id="4_aw6gv"]
 [ext_resource type="Script" path="res://UI/in_game_ui_control_menu.gd" id="5_3gw13"]
+[ext_resource type="StyleBox" uid="uid://kfvai4h5q45v" path="res://UI/back_theme.tres" id="6_ewjwa"]
+[ext_resource type="Texture2D" uid="uid://bx4xpkri4n6kb" path="res://sprites/back.svg" id="6_jjenp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3b6i5"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.15, 0.15, 0.15, 1)
+corner_radius_bottom_right = 15
 
 [node name="IngameUI" type="Control"]
 layout_mode = 3
@@ -50,16 +60,22 @@ key = "Shift"
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 34.0
-offset_top = 26.0
-offset_right = 200.0
-offset_bottom = 156.0
+offset_right = 166.0
+offset_bottom = 130.0
 script = ExtResource("5_3gw13")
 
 [node name="GoBackMenuButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_right = 185.0
-offset_bottom = 81.0
-text = "Menu"
+offset_right = 60.0
+offset_bottom = 60.0
+focus_mode = 0
+theme_override_styles/normal = ExtResource("6_ewjwa")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3b6i5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3b6i5")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_3b6i5")
+text = "  "
+icon = ExtResource("6_jjenp")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="pressed" from="Control/GoBackMenuButton" to="Control" method="_on_go_back_menu_button_pressed"]

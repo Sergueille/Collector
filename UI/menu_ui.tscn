@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cds3fwip0u6y0"]
+[gd_scene load_steps=4 format=3 uid="uid://b5ki33weer1qa"]
 
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_jjnuu"]
 [ext_resource type="Script" uid="uid://d1wun27dk8f5o" path="res://UI/control.gd" id="2_bh1w4"]
+[ext_resource type="Theme" uid="uid://m1chhbmd1cxr" path="res://UI/general_theme.tres" id="3_rfjxj"]
 
 [node name="IngameUI" type="Control"]
 layout_mode = 3
@@ -59,37 +60,42 @@ script = ExtResource("2_bh1w4")
 
 [node name="PlayButton1" type="Button" parent="HBoxContainer/Control"]
 layout_mode = 0
-offset_right = 52.0
-offset_bottom = 50.0
+offset_right = 68.0
+offset_bottom = 68.0
+theme = ExtResource("3_rfjxj")
 text = "1"
 
 [node name="PlayButton2" type="Button" parent="HBoxContainer/Control"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 75.0
-offset_right = 125.0
-offset_bottom = 50.0
+offset_right = 143.0
+offset_bottom = 68.0
+theme = ExtResource("3_rfjxj")
 text = "2"
 
 [node name="PlayButton3" type="Button" parent="HBoxContainer/Control"]
 layout_mode = 0
 offset_left = 150.0
-offset_right = 200.0
-offset_bottom = 50.0
+offset_right = 218.0
+offset_bottom = 68.0
+theme = ExtResource("3_rfjxj")
 text = "3"
 
 [node name="PlayButton4" type="Button" parent="HBoxContainer/Control"]
 layout_mode = 0
 offset_left = 225.0
-offset_right = 275.0
-offset_bottom = 50.0
+offset_right = 293.0
+offset_bottom = 68.0
+theme = ExtResource("3_rfjxj")
 text = "4"
 
 [node name="PlayButton5" type="Button" parent="HBoxContainer/Control"]
 layout_mode = 0
 offset_left = 300.0
-offset_right = 350.0
-offset_bottom = 50.0
+offset_right = 368.0
+offset_bottom = 68.0
+theme = ExtResource("3_rfjxj")
 text = "5"
 
 [node name="CreditContainer" type="HBoxContainer" parent="."]
@@ -106,7 +112,7 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 133.0
 offset_bottom = 82.0
-theme_override_font_sizes/font_size = 22
+theme = ExtResource("3_rfjxj")
 text = "Crédits"
 
 [connection signal="pressed" from="HBoxContainer/Control/PlayButton1" to="HBoxContainer/Control" method="_on_play_button_1_pressed"]

@@ -1,19 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dfrt0ougkb0aa"]
+[gd_scene load_steps=3 format=3 uid="uid://dfrt0ougkb0aa"]
 
 [ext_resource type="Script" uid="uid://c4v78c2w06106" path="res://puzzle/puzzle.gd" id="1_n7lcs"]
-[ext_resource type="Texture2D" uid="uid://bx1ouwyfg3hq4" path="res://sprites/tileset_aligned_1.svg" id="2_chgo7"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xv3xb"]
-texture = ExtResource("2_chgo7")
-separation = Vector2i(40, 40)
-texture_region_size = Vector2i(438, 438)
-
-[sub_resource type="TileSet" id="TileSet_3gr0x"]
-sources/0 = SubResource("TileSetAtlasSource_xv3xb")
+[ext_resource type="TileSet" uid="uid://bfn7s6mkc41s" path="res://tileset_nature.tres" id="2_chgo7"]
 
 [node name="Puzzle2" type="Node2D" node_paths=PackedStringArray("tilemap")]
 script = ExtResource("1_n7lcs")
 tilemap = NodePath("TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_3gr0x")
+tile_set = ExtResource("2_chgo7")

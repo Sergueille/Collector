@@ -1,0 +1,11 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bfn7s6mkc41s"]
+
+[ext_resource type="Texture2D" uid="uid://bx1ouwyfg3hq4" path="res://sprites/tileset_aligned_1.svg" id="1_75lnl"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xv3xb"]
+texture = ExtResource("1_75lnl")
+separation = Vector2i(40, 40)
+texture_region_size = Vector2i(438, 438)
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_xv3xb")

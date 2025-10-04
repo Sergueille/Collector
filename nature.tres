@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TileTheme" load_steps=3 format=3 uid="uid://cr1i60cabnem5"]
+
+[ext_resource type="Script" uid="uid://f18crfibxqkd" path="res://theme.gd" id="1_m0s1j"]
+[ext_resource type="TileSet" uid="uid://bfn7s6mkc41s" path="res://tileset_nature.tres" id="2_o5j1j"]
+
+[resource]
+script = ExtResource("1_m0s1j")
+tileset = ExtResource("2_o5j1j")
+tiles_full = Array[Vector2i]([Vector2i(3, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 0)])
+tiles_bl = Array[Vector2i]([Vector2i(2, 0)])
+tiles_br = Array[Vector2i]([Vector2i(1, 2)])
+tiles_tl = Array[Vector2i]([Vector2i(3, 1)])
+tiles_tr = Array[Vector2i]([Vector2i(2, 2)])
+tiles_b = Array[Vector2i]([Vector2i(0, 2)])
+tiles_t = Array[Vector2i]([Vector2i(0, 0)])
+tiles_l = Array[Vector2i]([Vector2i(1, 0)])
+tiles_r = Array[Vector2i]([Vector2i(3, 2)])
+metadata/_custom_type_script = "uid://f18crfibxqkd"

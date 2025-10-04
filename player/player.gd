@@ -16,6 +16,7 @@ var movement_direction: Vector2i = Vector2i.ZERO
 
 var movement_tween: Tween = null
 var movement_cooldown: SceneTreeTimer = null
+var moving: bool = false
 
 
 func _ready() -> void:
@@ -40,6 +41,7 @@ func move(target_position: Vector2i):
 	puzzle.tiles[target_position].apply_properties()
 	
 	if target_position != current_position:
+		moving = true
 		print("deslocamento na direção ", target_position-current_position)
 		# move was not blocked
 		# run animation of player moving between tiles and block movement
@@ -52,8 +54,10 @@ func move(target_position: Vector2i):
 		movement_tween.tween_property(self, "position", final_position, MOVEMENT_DURATION)
 		await movement_tween.finished
 		current_position = target_position
+		puzzle.tiles[current_position].set_activated(true)
 		snap()
 		movement_tween = null
+		moving = false
 	#movement_finished.emit()
 
 
@@ -66,6 +70,8 @@ func snap():
 
 
 func _input(event: InputEvent) -> void:
+	if moving:
+		return
 	if event.is_action_pressed("up"):
 		movement_direction = Vector2i(0, -1)
 	if event.is_action_pressed("right"):

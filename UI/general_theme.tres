@@ -59,3 +59,7 @@ Button/styles/hover = SubResource("StyleBoxFlat_5drhp")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_srd1v")
 Button/styles/normal = SubResource("StyleBoxFlat_qces7")
 Button/styles/pressed = SubResource("StyleBoxFlat_dc8b5")
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10

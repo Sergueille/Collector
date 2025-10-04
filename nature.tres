@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_m0s1j")
 tileset = ExtResource("2_o5j1j")
-tiles_full = Array[Vector2i]([Vector2i(3, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 0)])
+tiles_full = Array[Vector2i]([Vector2i(3, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)])
 tiles_bl = Array[Vector2i]([Vector2i(2, 0)])
 tiles_br = Array[Vector2i]([Vector2i(1, 2)])
 tiles_tl = Array[Vector2i]([Vector2i(3, 1)])

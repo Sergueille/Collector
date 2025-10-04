@@ -1,10 +1,15 @@
 class_name Tile
-extends Node2D
+extends Node
 
-@export var properties: Array[TileProperty]
+@export var data: TileResource
 
 var tile_position: Vector2i
 var activated: bool = false
+
+
+func _ready() -> void:
+	# add sprites (both for tile and for power-ups) and idk
+	return
 
 
 func set_activated(activated: bool):
@@ -12,7 +17,7 @@ func set_activated(activated: bool):
 
 
 func apply_properties() -> void:
-	for property in properties:
+	for property in data.properties:
 		property.apply()
 
 

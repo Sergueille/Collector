@@ -3,7 +3,7 @@ extends Node
 
 @export var data: TileResource
 
-var tile_position: Vector2i
+var tile_position: Vector2i # TODO is this necessary? Just check in the puzzle idk
 var activated: bool = false
 var properties: Array[TileProperty] = []
 
@@ -20,7 +20,6 @@ func _ready() -> void:
 
 func set_activated(activated: bool):
 	self.activated = activated
-	print("activated!! ", tile_position)
 	# TODO update tile visually
 	# it is possible to add an animation by instancing an animation
 	# scene just on top of the tile or something

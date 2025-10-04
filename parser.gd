@@ -1,4 +1,10 @@
-extends Object
+class_name Parser
+extends Node
+
+@export var puzzle_scene: PackedScene
+@export var tile_scene: PackedScene
+@export var block_property_scene: PackedScene
+@export var power_up_property_scene: PackedScene
 
 # Fonction qui lit un fichier texte et génère une carte (Puzzle) à partir de son contenu.
 # Le fichier doit contenir :
@@ -29,47 +35,49 @@ func createMapFromFile(filename):
 	var min_cost = str_min_cost.to_int()
 
 	# Création d’un nouvel objet Puzzle (niveau)
-	var level = Puzzle.new()
+	var level = puzzle_scene.instantiate()
 
 	# Variables temporaires pour stocker la propriété de chaque case
 	var property
 	var start_position  # Servira à mémoriser la position de départ du joueur
 	
 	# Parcourt la carte ligne par ligne et colonne par colonne
-	for i in range(length):
-		for j in range(width):
+	for j in range(length):
+		line = file.get_line()
+		for i in range(width):
 			# Création d’une ressource de tuile
-			var ressource = TileResource.new()
-
+			var tile_resource = TileResource.new()
+			
 			# Récupère le caractère représentant la tuile courante
-			property = line[j]
+			property = line[i]
 
 			# Initialise une nouvelle tuile dans la grille du niveau
-			level.tiles[Vector2i(i, j)] = Tile.new()
+			level.tiles[Vector2i(i, j)] = tile_scene.instantiate()
+			level.add_child(level.tiles[Vector2i(i,j)])
 
 			var prop  # Stocke le type de propriété associé à la tuile
 
 			# Associe un type de propriété selon le caractère lu
 			if property == "m":
-				prop = BlockProperty.new()       # "m" → mur ou bloc infranchissable
-
+				tile_resource.properties.push_back(block_property_scene)       # "m" → mur ou bloc infranchissable
+				tile_resource.atlas_coordinates = Vector2i(0,0) # TEST
 			elif property == "v":
-				prop = TileProperty.new()        # "v" → tuile vide ou normale
-
+				tile_resource.atlas_coordinates = Vector2i(1,0) # TEST
 			elif property == "p":
-				prop = TileProperty.new()        # "p" → point de départ
 				start_position = Vector2i(i, j)  # on enregistre la position de départ
-
+				tile_resource.atlas_coordinates = Vector2i(2,0) # TEST
+				level.player.current_position = Vector2i(i, j) 
 			elif property == "d":
-				prop = PowerUpProperty.new()     # "d" → bonus ou item
-
+				tile_resource.atlas_coordinates = Vector2i(3,0) # TEST
+				tile_resource.properties.push_back(power_up_property_scene)
 			elif property == "a":
-				prop = PowerUpProperty.new()     # "a" → autre type de bonus (à clarifier)
-			
+				tile_resource.atlas_coordinates = Vector2i(4,0) # TEST
+				tile_resource.properties.push_back(power_up_property_scene)     # "a" → autre type de bonus (à clarifier)
 			# Ajoute la propriété à la ressource et l’associe à la tuile
-			ressource.properties.push_back(prop)
-			level.tiles[Vector2i(i, j)].data = ressource
-
+			level.tiles[Vector2i(i, j)].data = tile_resource
+	level.set_level()
+	return level
+	
 	# Retourne un dictionnaire contenant toutes les informations utiles du niveau
 	return {
 		"name": name,

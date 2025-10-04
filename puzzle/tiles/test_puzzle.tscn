@@ -121,8 +121,7 @@ metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 script = ExtResource("5_alx6q")
 metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 
-[node name="Puzzle" node_paths=PackedStringArray("player", "tiles", "ui") instance=ExtResource("1_yiny1")]
-player = NodePath("Player")
+[node name="Puzzle" node_paths=PackedStringArray("tiles") instance=ExtResource("1_yiny1")]
 tiles = {
 Vector2i(-1, -1): NodePath("Tile3"),
 Vector2i(-1, 0): NodePath("Tile2"),
@@ -136,15 +135,14 @@ Vector2i(3, 0): NodePath("Tile9"),
 Vector2i(4, 0): NodePath("Tile10"),
 Vector2i(5, 0): NodePath("Tile11")
 }
-ui = NodePath("CanvasLayer/IngameUI")
 
 [node name="TileMapLayer" parent="." index="0"]
 tile_map_data = PackedByteArray("AAD8//3/AAAAAAAAAAD8//7/AAAAAAEAAAD8////AAAAAAIAAAD8/wAAAAAAAAMAAAD8/wEAAAAAAAQAAAD8/wIAAAAAAAUAAAD8/wMAAAAAAAYAAAD8/wQAAAAAAAcAAAD9//3/AAABAAAAAAD9//7/AAABAAEAAAD9////AAABAAIAAAD9/wAAAAABAAMAAAD9/wEAAAABAAQAAAD9/wIAAAABAAUAAAD9/wMAAAABAAYAAAD9/wQAAAABAAcAAAD+//3/AAACAAAAAAD+//7/AAACAAEAAAD+////AAACAAIAAAD+/wAAAAACAAMAAAD+/wEAAAACAAQAAAD+/wIAAAACAAUAAAD+/wMAAAACAAYAAAD+/wQAAAACAAcAAAD///3/AAADAAAAAAD///7/AAADAAEAAAD/////AAADAAIAAAD//wAAAAADAAMAAAD//wEAAAADAAQAAAD//wIAAAADAAUAAAD//wMAAAADAAYAAAD//wQAAAADAAcAAAAAAP3/AAAEAAAAAAAAAP7/AAAEAAEAAAAAAP//AAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAIAAAAEAAUAAAAAAAMAAAAEAAYAAAAAAAQAAAAEAAcAAAABAP3/AAAFAAAAAAABAP7/AAAFAAEAAAABAP//AAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAFAAQAAAABAAIAAAAFAAUAAAABAAMAAAAFAAYAAAABAAQAAAAFAAcAAAACAP3/AAAGAAAAAAACAP7/AAAGAAEAAAACAP//AAAGAAIAAAACAAAAAAAGAAMAAAACAAEAAAAGAAQAAAACAAIAAAAGAAUAAAACAAMAAAAGAAYAAAACAAQAAAAGAAcAAAADAP3/AAAHAAAAAAADAP7/AAAHAAEAAAADAP//AAAHAAIAAAADAAAAAAAHAAMAAAADAAEAAAAHAAQAAAADAAIAAAAHAAUAAAADAAMAAAAHAAYAAAADAAQAAAAHAAcAAAA=")
 tile_set = SubResource("TileSet_ot56v")
 
-[node name="Camera2D" type="Camera2D" parent="." index="1"]
+[node name="Camera2D2" type="Camera2D" parent="." index="1"]
 
-[node name="Player" parent="." index="2" node_paths=PackedStringArray("sender") instance=ExtResource("3_g7gbl")]
+[node name="Player2" parent="." index="2" node_paths=PackedStringArray("sender") instance=ExtResource("3_g7gbl")]
 power_ups = Dictionary[int, int]({
 0: 5,
 1: 1
@@ -232,9 +230,9 @@ data = SubResource("Resource_ego48")
 [node name="Tile27" parent="." index="29" instance=ExtResource("4_ot56v")]
 data = SubResource("Resource_ego48")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="30"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." index="30"]
 
-[node name="IngameUI" parent="CanvasLayer" index="0" instance=ExtResource("8_fmwml")]
+[node name="IngameUI" parent="CanvasLayer2" index="0" instance=ExtResource("8_fmwml")]
 
 [node name="SignalBusReceiver" type="Node" parent="." index="31"]
 script = ExtResource("9_03wjf")

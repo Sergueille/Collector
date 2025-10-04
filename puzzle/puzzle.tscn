@@ -1,11 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfrt0ougkb0aa"]
+[gd_scene load_steps=8 format=3 uid="uid://dfrt0ougkb0aa"]
 
 [ext_resource type="Script" uid="uid://c4v78c2w06106" path="res://puzzle/puzzle.gd" id="1_n7lcs"]
-[ext_resource type="TileSet" uid="uid://bfn7s6mkc41s" path="res://tileset_nature.tres" id="2_chgo7"]
+[ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="2_8isiv"]
+[ext_resource type="Texture2D" uid="uid://bx1ouwyfg3hq4" path="res://sprites/tileset_aligned_1.svg" id="2_chgo7"]
+[ext_resource type="PackedScene" uid="uid://0ghb8n7ykg2l" path="res://UI/ingame_ui.tscn" id="3_xv3xb"]
+[ext_resource type="PackedScene" uid="uid://dbq18lsil75me" path="res://player/player.tscn" id="4_3gr0x"]
 
-[node name="Puzzle2" type="Node2D" node_paths=PackedStringArray("tilemap")]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xv3xb"]
+texture = ExtResource("2_chgo7")
+separation = Vector2i(40, 40)
+texture_region_size = Vector2i(438, 438)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+3:2/0 = 0
+3:0/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_3gr0x"]
+tile_size = Vector2i(438, 438)
+sources/0 = SubResource("TileSetAtlasSource_xv3xb")
+
+[node name="Puzzle" type="Node2D" node_paths=PackedStringArray("player", "tilemap", "ui")]
 script = ExtResource("1_n7lcs")
+player = NodePath("Player")
 tilemap = NodePath("TileMapLayer")
+ui = NodePath("CanvasLayer/IngameUI")
+tile_scene = ExtResource("2_8isiv")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = ExtResource("2_chgo7")
+tile_set = SubResource("TileSet_3gr0x")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="IngameUI" parent="CanvasLayer" instance=ExtResource("3_xv3xb")]
+
+[node name="Player" parent="." instance=ExtResource("4_3gr0x")]
+scale = Vector2(2, 2)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)

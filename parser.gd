@@ -1,5 +1,6 @@
 extends Object
 
+
 func createMapFromFile(filename):
 	if not FileAccess.file_exists(filename):
 		return
@@ -8,22 +9,33 @@ func createMapFromFile(filename):
 	var name = line
 	var len = file.get_line()
 	var wid = file.get_line()
-	var coup_min = file.get_line()
-	#Convertir dim en intj = file.get_8()
+	var min_cost = file.get_line()
 	
-	#var level = Level...
+	var level = Puzzle.new()
 	var property
+	var start_position
 	for i in range(len):
-		for j in range(wid) : 
+		for j in range(wid) :
+			
+			var ressource = TileResource.new()
 			property = line[j] 
-			if porperty = "m" :
-				level.tiles[i][j] = Tile(i, j, property)
-			elif porperty = "v" :
-				level.tiles[i][j] = Tile(i, j, property)
-			elif porperty = "p" :
-				level.tiles[i][j] = Tile(i, j, property)
-			elif porperty = "d" : 
-				level.tiles[i][j] = Tile(i, j, property)
-			elif porperty = "a" :
-				level.tiles[i][j] = Tile(i, j, property)
+			level.tiles[Vector2i(i,j)] = Tile.new()
+			var prop : TileProperty
+			
+			if property == "m" :
+				prop = BlockProperty.new()
+				
+			elif property == "v" :
+				prop = TileProperty.new()
+				
+			elif property == "p" :
+				prop = TileProperty.new()
+				#noter position de départ
+			elif property == "d" : 
+				prop = PowerUpProperty.new()
+			elif property == "a" :
+				prop = PowerUpProperty.new()
+				
+			ressource.properties.push_back(prop)
+			level.tiles[Vector2i(i,j)].data = ressource
 			

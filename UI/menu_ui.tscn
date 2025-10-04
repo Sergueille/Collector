@@ -33,7 +33,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -363.0
-offset_bottom = -61.0
+offset_bottom = -228.0
 alignment = 1
 
 [node name="Control" type="Control" parent="HBoxContainer"]
@@ -76,5 +76,23 @@ offset_right = 350.0
 offset_bottom = 50.0
 text = "5"
 
+[node name="CreditContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 630.0
+offset_top = 335.0
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="CreditControl" type="Control" parent="CreditContainer"]
+layout_mode = 2
+
+[node name="CreditButton" type="Button" parent="CreditContainer/CreditControl"]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 62.0
+text = "Crédits"
+
 [connection signal="pressed" from="HBoxContainer/Control/PlayButton1" to="HBoxContainer/Control" method="_on_play_button_1_pressed"]
 [connection signal="pressed" from="HBoxContainer/Control/PlayButton2" to="HBoxContainer/Control" method="_on_play_button_2_pressed"]
+[connection signal="pressed" from="CreditContainer/CreditControl/CreditButton" to="HBoxContainer/Control" method="_on_credit_button_pressed"]

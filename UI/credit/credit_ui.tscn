@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://b162jj13tvqpd"]
+
+[ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_8q1j3"]
+[ext_resource type="Script" uid="uid://c6dejcva4xn57" path="res://UI/credit/credit_control.gd" id="2_6lyng"]
+
+[node name="IngameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -574.0
+offset_top = 57.0
+offset_right = 573.0
+offset_bottom = 504.0
+theme = ExtResource("1_8q1j3")
+theme_override_font_sizes/font_size = 60
+text = "Jeu réalisé par
+- Alexis
+- Cosmin
+- Djildé
+- Franscesco
+- Maximilien"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 423.0
+offset_right = 1152.0
+offset_bottom = 648.0
+alignment = 1
+
+[node name="CreditControl" type="Control" parent="CreditContainer"]
+layout_mode = 2
+script = ExtResource("2_6lyng")
+
+[node name="CreditButton" type="Button" parent="CreditContainer/CreditControl"]
+layout_mode = 0
+offset_right = 142.0
+offset_bottom = 54.0
+text = "Menu"
+
+[connection signal="pressed" from="CreditContainer/CreditControl/CreditButton" to="CreditContainer/CreditControl" method="_on_credit_button_pressed"]

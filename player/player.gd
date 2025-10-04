@@ -1,15 +1,10 @@
 class_name Player
 extends Node2D
 
-# TODO we may have to add something like a tween for the player's movement, 
-# and instead of defining the direction to which the player will move, maybe we can
-# define the list of deplacements and create only one tween to make all of them at once
-
-const TILE_SIZE = 16 # TODO make it global
-const OFFSET = Vector2i(TILE_SIZE, TILE_SIZE) / 2
 const MOVEMENT_DURATION = 0.2
 
-@export var power_ups: Dictionary[int, PowerUp] # quantity - power-up
+@export var power_ups: Dictionary[Globals.PowerUp, int] # power-up type - quantity
+@export var sender: SignalBusSender
 
 var current_position: Vector2i = Vector2i.ZERO
 var movement_direction: Vector2i = Vector2i.ZERO
@@ -29,9 +24,7 @@ func _process(delta: float) -> void:
 		target_position = current_position + movement_direction
 		move()
 	
-
-# this will be awkward but we may have to verify if the player moved
-# and it stayed in the same place because of the "block movement" effect
+	
 func move():
 	movement_direction = Vector2i.ZERO
 	var puzzle = Puzzle.get_puzzle(self)
@@ -41,14 +34,11 @@ func move():
 	
 	if target_position != current_position:
 		moving = true
-		# move was not blocked
-		# run animation of player moving between tiles and block movement
-		# while that happens
 		if movement_tween:
 			movement_tween.kill()
 			movement_tween = null
 		movement_tween = create_tween()
-		var final_position = Vector2(target_position * TILE_SIZE + OFFSET)
+		var final_position = Vector2(target_position * Globals.TILE_SIZE + Globals.TILE_OFFSET)
 		movement_tween.tween_property(self, "position", final_position, MOVEMENT_DURATION)
 		await movement_tween.finished
 		current_position = target_position
@@ -59,18 +49,28 @@ func move():
 	#movement_finished.emit()
 
 
-func add_power_up():
-	return
+func add_power_up(type: Globals.PowerUp):
+	power_ups[type] += 1
+	sender.send_power_up_obtained(type)
+
+
+func use_power_up(type: Globals.PowerUp):
+	if power_ups[type] <= 0:
+		return
+	for power_up in get_children().filter(func(x): return x is PowerUp):
+		if power_up.type == type:
+			power_up.activate()
+	power_ups[type] -= 1
+	sender.send_power_up_used(type)
 
 
 func snap():
-	position = current_position * TILE_SIZE + OFFSET
+	position = current_position * Globals.TILE_SIZE + Globals.TILE_OFFSET
 
 
 func _input(event: InputEvent) -> void:
 	if moving:
 		return
-
 	var dash_direction := Vector2i.ZERO
 	
 	if event.is_action_pressed("up"):

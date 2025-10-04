@@ -2,8 +2,8 @@ class_name SignalBusSender
 extends Node
 
 
-# func send_foo():
-#    SignalBus.send(&"foo", [null])
+func send_power_up_obtained(power_up: Globals.PowerUp):
+	SignalBus.send(&"power_up_obtained", [power_up])
 
-# func send_aaa(bbb: int):
-#	SignalBus.send(&"aaa", [bbb])
+func send_power_up_used(power_up: Globals.PowerUp):
+	SignalBus.send(&"power_up_used", [power_up])

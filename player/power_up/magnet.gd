@@ -2,6 +2,8 @@ class_name Magnet
 extends PowerUp
 
 # Ce power-up active toutes les tiles autour du joueur (8 directions)
+@export var type: Globals.PowerUp = Globals.PowerUp.MAGNET
+
 func activate() -> void:
 	var puzzle := Puzzle.get_puzzle(self)
 	if puzzle == null:

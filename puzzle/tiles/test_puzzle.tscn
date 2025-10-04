@@ -1,12 +1,14 @@
-[gd_scene load_steps=17 format=4 uid="uid://cfv5mcvdefe8n"]
+[gd_scene load_steps=19 format=4 uid="uid://cfv5mcvdefe8n"]
 
 [ext_resource type="PackedScene" uid="uid://dfrt0ougkb0aa" path="res://puzzle/puzzle.tscn" id="1_yiny1"]
 [ext_resource type="Texture2D" uid="uid://cs2482ewy1udk" path="res://icon.svg" id="2_gcyel"]
-[ext_resource type="Script" uid="uid://gwbo75pfp2tu" path="res://puzzle/tile_map.gd" id="3_3owcc"]
 [ext_resource type="PackedScene" uid="uid://dbq18lsil75me" path="res://player/player.tscn" id="3_g7gbl"]
 [ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="4_ot56v"]
 [ext_resource type="Script" uid="uid://bhgo8tgliywqc" path="res://puzzle/tiles/tile_resource.gd" id="5_alx6q"]
 [ext_resource type="PackedScene" uid="uid://i0lcw04uwkwe" path="res://puzzle/property/block.tscn" id="7_wbbi2"]
+[ext_resource type="PackedScene" uid="uid://0ghb8n7ykg2l" path="res://UI/ingame_ui.tscn" id="8_fmwml"]
+[ext_resource type="Script" uid="uid://dinkxp3xvx17q" path="res://util/signal_bus/signal_bus_receiver.gd" id="9_03wjf"]
+[ext_resource type="Script" uid="uid://b4ydaqmdutsgq" path="res://util/signal_bus/signal_bus_sender.gd" id="10_j1p52"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g7gbl"]
 texture = ExtResource("2_gcyel")
@@ -121,7 +123,7 @@ script = ExtResource("5_alx6q")
 properties = Array[PackedScene]([ExtResource("7_wbbi2")])
 metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 
-[node name="Puzzle" node_paths=PackedStringArray("player", "tiles", "tilemap") instance=ExtResource("1_yiny1")]
+[node name="Puzzle" node_paths=PackedStringArray("player", "tiles", "tilemap", "ui") instance=ExtResource("1_yiny1")]
 player = NodePath("Player")
 tiles = {
 Vector2i(-1, -1): NodePath("Tile3"),
@@ -133,16 +135,20 @@ Vector2i(1, 0): NodePath("Tile5"),
 Vector2i(1, 1): NodePath("Tile7")
 }
 tilemap = NodePath("TileMapLayer")
+ui = NodePath("CanvasLayer/IngameUI")
 
-[node name="TileMapLayer" parent="." index="0" node_paths=PackedStringArray("puzzle")]
+[node name="TileMapLayer" parent="." index="0"]
 tile_map_data = PackedByteArray("AAD8//3/AAAAAAAAAAD8//7/AAAAAAEAAAD8////AAAAAAIAAAD8/wAAAAAAAAMAAAD8/wEAAAAAAAQAAAD8/wIAAAAAAAUAAAD8/wMAAAAAAAYAAAD8/wQAAAAAAAcAAAD9//3/AAABAAAAAAD9//7/AAABAAEAAAD9////AAABAAIAAAD9/wAAAAABAAMAAAD9/wEAAAABAAQAAAD9/wIAAAABAAUAAAD9/wMAAAABAAYAAAD9/wQAAAABAAcAAAD+//3/AAACAAAAAAD+//7/AAACAAEAAAD+////AAACAAIAAAD+/wAAAAACAAMAAAD+/wEAAAACAAQAAAD+/wIAAAACAAUAAAD+/wMAAAACAAYAAAD+/wQAAAACAAcAAAD///3/AAADAAAAAAD///7/AAADAAEAAAD/////AAADAAIAAAD//wAAAAADAAMAAAD//wEAAAADAAQAAAD//wIAAAADAAUAAAD//wMAAAADAAYAAAD//wQAAAADAAcAAAAAAP3/AAAEAAAAAAAAAP7/AAAEAAEAAAAAAP//AAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAIAAAAEAAUAAAAAAAMAAAAEAAYAAAAAAAQAAAAEAAcAAAABAP3/AAAFAAAAAAABAP7/AAAFAAEAAAABAP//AAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAFAAQAAAABAAIAAAAFAAUAAAABAAMAAAAFAAYAAAABAAQAAAAFAAcAAAACAP3/AAAGAAAAAAACAP7/AAAGAAEAAAACAP//AAAGAAIAAAACAAAAAAAGAAMAAAACAAEAAAAGAAQAAAACAAIAAAAGAAUAAAACAAMAAAAGAAYAAAACAAQAAAAGAAcAAAADAP3/AAAHAAAAAAADAP7/AAAHAAEAAAADAP//AAAHAAIAAAADAAAAAAAHAAMAAAADAAEAAAAHAAQAAAADAAIAAAAHAAUAAAADAAMAAAAHAAYAAAADAAQAAAAHAAcAAAA=")
 tile_set = SubResource("TileSet_ot56v")
-script = ExtResource("3_3owcc")
-puzzle = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-[node name="Player" parent="." index="2" instance=ExtResource("3_g7gbl")]
+[node name="Player" parent="." index="2" node_paths=PackedStringArray("sender") instance=ExtResource("3_g7gbl")]
+power_ups = Dictionary[int, int]({
+0: 5,
+1: 1
+})
+sender = NodePath("../SignalBusSender")
 
 [node name="Tile" parent="." index="3" instance=ExtResource("4_ot56v")]
 data = SubResource("Resource_3owcc")
@@ -164,3 +170,18 @@ data = SubResource("Resource_30kmg")
 
 [node name="Tile7" parent="." index="9" instance=ExtResource("4_ot56v")]
 data = SubResource("Resource_ego48")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="10"]
+
+[node name="IngameUI" parent="CanvasLayer" index="0" instance=ExtResource("8_fmwml")]
+
+[node name="SignalBusReceiver" type="Node" parent="." index="11"]
+script = ExtResource("9_03wjf")
+metadata/_custom_type_script = "uid://dinkxp3xvx17q"
+
+[node name="SignalBusSender" type="Node" parent="." index="12"]
+script = ExtResource("10_j1p52")
+metadata/_custom_type_script = "uid://b4ydaqmdutsgq"
+
+[connection signal="power_up_obtained" from="SignalBusReceiver" to="." method="_on_power_up_obtained"]
+[connection signal="power_up_used" from="SignalBusReceiver" to="." method="_on_power_up_used"]

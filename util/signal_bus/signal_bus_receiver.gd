@@ -1,8 +1,8 @@
 class_name SignalBusReceiver
 extends Node
 
-# signal foo()
-# signal aaa(bbb: int)
+signal power_up_obtained(power_up: Globals.PowerUp)
+signal power_up_used(power_up: Globals.PowerUp)
 
 const GROUP := &'RECEIVER_GROUP'
 

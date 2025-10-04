@@ -2,6 +2,8 @@ class_name Dash
 extends PowerUp
 
 
+@export var type: Globals.PowerUp = Globals.PowerUp.DASH
+
 var dash_direction: Vector2i = Vector2i.ZERO
 
 # this power-up makes the player move until it hits a wall

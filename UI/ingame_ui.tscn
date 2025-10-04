@@ -1,5 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://0ghb8n7ykg2l"]
 
+[ext_resource type="Script" uid="uid://dfkrwqeafaq3l" path="res://UI/ingame_ui.gd" id="1_jjenp"]
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_mjlmo"]
 [ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_8d257"]
 [ext_resource type="PackedScene" uid="uid://bleuowoor1sc2" path="res://UI/inventory_item.tscn" id="2_mjlmo"]
@@ -16,13 +17,15 @@ content_margin_bottom = 15.0
 bg_color = Color(0.15, 0.15, 0.15, 1)
 corner_radius_bottom_right = 15
 
-[node name="IngameUI" type="Control"]
+[node name="IngameUI" type="Control" node_paths=PackedStringArray("items")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jjenp")
+items = [NodePath("HBoxContainer/Magnets"), NodePath("HBoxContainer/Dashes")]
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -49,14 +52,17 @@ offset_top = -150.0
 alignment = 1
 
 [node name="Magnets" parent="HBoxContainer" instance=ExtResource("2_mjlmo")]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("2_8d257")
 key = "E"
 
 [node name="Dashes" parent="HBoxContainer" instance=ExtResource("2_mjlmo")]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("4_aw6gv")
 key = "Shift"
+type = 1
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0

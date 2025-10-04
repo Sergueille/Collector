@@ -1,7 +1,9 @@
+class_name InventoryItem
 extends Control
 
 @export var texture: Texture
 @export var key: String
+@export var type: Globals.PowerUp
 
 var count := 0
 

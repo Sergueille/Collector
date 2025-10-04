@@ -2,6 +2,8 @@ class_name Dash
 extends PowerUp
 
 
+@export var type: Globals.PowerUp = Globals.PowerUp.DASH
+
 var dash_direction: Vector2i = Vector2i.ZERO
 
 # this power-up makes the player move until it hits a wall
@@ -18,6 +20,7 @@ func activate() -> void:
 	var current := player.current_position
 	var next := current + dash_direction
 	
+	# BUG player can dash through tiles with block property
 	while puzzle.tiles.has(next):
 		# NOT FINISHED : we have to stock the power up in the inventory
 		puzzle.tiles[next].set_activated(true)

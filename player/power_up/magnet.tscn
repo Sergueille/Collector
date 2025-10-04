@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1g34hpu5t4cw"]
+[gd_scene load_steps=3 format=3 uid="uid://c1g34hpu5t4cw"]
 
 [ext_resource type="Script" uid="uid://dgsvso0y71tgd" path="res://player/power_up/magnet.gd" id="1_d07og"]
+[ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_p3txv"]
 
 [node name="Magnet" type="Node2D"]
 script = ExtResource("1_d07og")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p3txv")

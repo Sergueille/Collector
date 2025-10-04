@@ -80,3 +80,8 @@ func _input(event: InputEvent) -> void:
 		movement_direction = Vector2i(0, 1)
 	if event.is_action_pressed("left"):
 		movement_direction = Vector2i(-1, 0)
+	
+	if event.is_action_pressed("magnet"): # Activation du magnet
+		for power_up in power_ups.values():
+			if power_up is Magnet:
+				power_up.activate()

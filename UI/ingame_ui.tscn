@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_8d257"]
 [ext_resource type="PackedScene" uid="uid://bleuowoor1sc2" path="res://UI/inventory_item.tscn" id="2_mjlmo"]
 [ext_resource type="Texture2D" uid="uid://cvnqx2rqm0ibf" path="res://sprites/dash.svg" id="4_aw6gv"]
-[ext_resource type="Script" uid="uid://bkyuph3ffhqxq" path="res://UI/in_game_ui_control_menu.gd" id="5_3gw13"]
+[ext_resource type="Script" path="res://UI/in_game_ui_control_menu.gd" id="5_3gw13"]
 
 [node name="IngameUI" type="Control"]
 layout_mode = 3

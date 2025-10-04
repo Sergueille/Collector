@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://cds3fwip0u6y0"]
+
+[ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_jjnuu"]
+[ext_resource type="Script" uid="uid://d1wun27dk8f5o" path="res://UI/control.gd" id="2_bh1w4"]
+
+[node name="IngameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -574.0
+offset_top = 57.0
+offset_right = 573.0
+offset_bottom = 160.0
+theme = ExtResource("1_jjnuu")
+theme_override_font_sizes/font_size = 60
+text = "Power collect"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -363.0
+offset_bottom = -61.0
+alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+script = ExtResource("2_bh1w4")
+
+[node name="PlayButton1" type="Button" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 50.0
+text = "1"
+
+[node name="PlayButton2" type="Button" parent="HBoxContainer/Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 0
+offset_left = 75.0
+offset_right = 125.0
+offset_bottom = 50.0
+text = "2"
+
+[node name="PlayButton3" type="Button" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 200.0
+offset_bottom = 50.0
+text = "3"
+
+[node name="PlayButton4" type="Button" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 225.0
+offset_right = 275.0
+offset_bottom = 50.0
+text = "4"
+
+[node name="PlayButton5" type="Button" parent="HBoxContainer/Control"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 50.0
+text = "5"
+
+[connection signal="pressed" from="HBoxContainer/Control/PlayButton1" to="HBoxContainer/Control" method="_on_play_button_1_pressed"]
+[connection signal="pressed" from="HBoxContainer/Control/PlayButton2" to="HBoxContainer/Control" method="_on_play_button_2_pressed"]

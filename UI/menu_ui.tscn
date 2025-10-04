@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cds3fwip0u6y0"]
+[gd_scene load_steps=4 format=3 uid="uid://b5ki33weer1qa"]
 
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_jjnuu"]
-[ext_resource type="Script" uid="uid://b5bgs76tufjnr" path="res://UI/menu_ui.gd" id="1_rfjxj"]
 [ext_resource type="Script" uid="uid://d1wun27dk8f5o" path="res://UI/control.gd" id="2_bh1w4"]
 [ext_resource type="Theme" uid="uid://m1chhbmd1cxr" path="res://UI/general_theme.tres" id="3_rfjxj"]
 
-[node name="IngameUI" type="Control"]
+[node name="IngameUI2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_bh1w4")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

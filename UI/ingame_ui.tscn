@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://0ghb8n7ykg2l"]
 
-[ext_resource type="Script" uid="uid://dfkrwqeafaq3l" path="res://UI/level_selection.gd" id="1_jjenp"]
+[ext_resource type="Script" uid="uid://dbp4txte3ljxa" path="res://UI/ingame_ui.gd" id="1_jjenp"]
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_mjlmo"]
 [ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_8d257"]
 [ext_resource type="PackedScene" uid="uid://bleuowoor1sc2" path="res://UI/inventory_item.tscn" id="2_mjlmo"]

@@ -1,24 +1,26 @@
 [gd_scene load_steps=6 format=3 uid="uid://dbq18lsil75me"]
 
 [ext_resource type="Script" uid="uid://bnjikg0a2fff3" path="res://player/player.gd" id="1_oul6g"]
-[ext_resource type="Script" uid="uid://bv7h5idq8miog" path="res://player/power_up/power_up.gd" id="2_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://cs2482ewy1udk" path="res://icon.svg" id="2_rkbax"]
 [ext_resource type="PackedScene" uid="uid://c1g34hpu5t4cw" path="res://player/power_up/magnet.tscn" id="3_yw30f"]
 [ext_resource type="PackedScene" uid="uid://njssqevmjyn6" path="res://player/power_up/dash.tscn" id="4_qjkh3"]
+[ext_resource type="Script" uid="uid://b4ydaqmdutsgq" path="res://util/signal_bus/signal_bus_sender.gd" id="5_qjkh3"]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("sender")]
 script = ExtResource("1_oul6g")
-power_ups = Dictionary[ExtResource("2_qjkh3"), int]({
-Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://player/power_up/magnet.gd"))
-: 5,
-Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://player/power_up/dash.gd"),"type":1)
-: 1
+power_ups = Dictionary[int, int]({
+0: 0,
+1: 0
 })
+sender = NodePath("SignalBusSender")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_rkbax")
 
 [node name="Magnet" parent="." instance=ExtResource("3_yw30f")]
 
 [node name="Dash" parent="." instance=ExtResource("4_qjkh3")]
+
+[node name="SignalBusSender" type="Node" parent="."]
+script = ExtResource("5_qjkh3")
+metadata/_custom_type_script = "uid://b4ydaqmdutsgq"

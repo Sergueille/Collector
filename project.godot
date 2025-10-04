@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://util/signal_bus/signal_bus.gd"
 Globals="*res://util/globals.gd"
+SceneSwitcher="*res://util/scene_switcher.gd"
+LevelParser="*res://parser.tscn"
 
 [input]
 

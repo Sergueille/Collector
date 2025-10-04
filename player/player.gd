@@ -13,6 +13,7 @@ const MOVEMENT_DURATION = 0.2
 
 var current_position: Vector2i = Vector2i.ZERO
 var movement_direction: Vector2i = Vector2i.ZERO
+var target_position: Vector2i = Vector2i.ZERO
 
 var movement_tween: Tween = null
 var movement_cooldown: SceneTreeTimer = null
@@ -25,24 +26,21 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if movement_direction != Vector2i.ZERO:
-		move(current_position + movement_direction)
-		movement_direction = Vector2i.ZERO
+		target_position = current_position + movement_direction
+		move()
 	
 
 # this will be awkward but we may have to verify if the player moved
 # and it stayed in the same place because of the "block movement" effect
-func move(target_position: Vector2i):
+func move():
 	movement_direction = Vector2i.ZERO
 	var puzzle = Puzzle.get_puzzle(self)
 	if not puzzle.tiles.has(target_position):
-		print("buwop")
-		print("quis ir pra ", current_position + movement_direction, " mas não tem nada lá")
 		return
 	puzzle.tiles[target_position].apply_properties()
 	
 	if target_position != current_position:
 		moving = true
-		print("deslocamento na direção ", target_position-current_position)
 		# move was not blocked
 		# run animation of player moving between tiles and block movement
 		# while that happens

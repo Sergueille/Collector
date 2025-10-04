@@ -3,6 +3,7 @@ extends Node2D
 
 @export var player: Player
 @export var tiles: Dictionary[Vector2i, Tile] # position of the tile - tile
+@export var tilemap: TileMapLayer
 
 
 func set_level():

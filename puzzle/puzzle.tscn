@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c4v78c2w06106" path="res://puzzle/puzzle.gd" id="1_n7lcs"]
 
-[node name="Puzzle" type="Node2D"]
+[node name="Puzzle2" type="Node2D"]
 script = ExtResource("1_n7lcs")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

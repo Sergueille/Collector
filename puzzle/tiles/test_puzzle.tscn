@@ -1,21 +1,26 @@
-[gd_scene load_steps=12 format=4 uid="uid://cfv5mcvdefe8n"]
+[gd_scene load_steps=17 format=4 uid="uid://cfv5mcvdefe8n"]
 
 [ext_resource type="PackedScene" uid="uid://dfrt0ougkb0aa" path="res://puzzle/puzzle.tscn" id="1_yiny1"]
 [ext_resource type="Texture2D" uid="uid://cs2482ewy1udk" path="res://icon.svg" id="2_gcyel"]
+[ext_resource type="Script" uid="uid://gwbo75pfp2tu" path="res://puzzle/tile_map.gd" id="3_3owcc"]
 [ext_resource type="PackedScene" uid="uid://dbq18lsil75me" path="res://player/player.tscn" id="3_g7gbl"]
 [ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="4_ot56v"]
 [ext_resource type="Script" uid="uid://bhgo8tgliywqc" path="res://puzzle/tiles/tile_resource.gd" id="5_alx6q"]
+[ext_resource type="PackedScene" uid="uid://i0lcw04uwkwe" path="res://puzzle/property/block.tscn" id="7_wbbi2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g7gbl"]
 texture = ExtResource("2_gcyel")
+0:0/next_alternative_id = 6
 0:0/0 = 0
+1:0/next_alternative_id = 3
 1:0/0 = 0
+2:0/next_alternative_id = 2
 2:0/0 = 0
-3:0/0 = 0
 4:0/0 = 0
 5:0/0 = 0
 6:0/0 = 0
 7:0/0 = 0
+0:1/next_alternative_id = 3
 0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
@@ -24,6 +29,7 @@ texture = ExtResource("2_gcyel")
 5:1/0 = 0
 6:1/0 = 0
 7:1/0 = 0
+0:2/next_alternative_id = 2
 0:2/0 = 0
 1:2/0 = 0
 2:2/0 = 0
@@ -32,6 +38,7 @@ texture = ExtResource("2_gcyel")
 5:2/0 = 0
 6:2/0 = 0
 7:2/0 = 0
+0:3/next_alternative_id = 2
 0:3/0 = 0
 1:3/0 = 0
 2:3/0 = 0
@@ -40,6 +47,7 @@ texture = ExtResource("2_gcyel")
 5:3/0 = 0
 6:3/0 = 0
 7:3/0 = 0
+0:4/next_alternative_id = 2
 0:4/0 = 0
 1:4/0 = 0
 2:4/0 = 0
@@ -48,6 +56,7 @@ texture = ExtResource("2_gcyel")
 5:4/0 = 0
 6:4/0 = 0
 7:4/0 = 0
+0:5/next_alternative_id = 2
 0:5/0 = 0
 1:5/0 = 0
 2:5/0 = 0
@@ -56,6 +65,7 @@ texture = ExtResource("2_gcyel")
 5:5/0 = 0
 6:5/0 = 0
 7:5/0 = 0
+0:6/next_alternative_id = 2
 0:6/0 = 0
 1:6/0 = 0
 2:6/0 = 0
@@ -64,6 +74,7 @@ texture = ExtResource("2_gcyel")
 5:6/0 = 0
 6:6/0 = 0
 7:6/0 = 0
+0:7/next_alternative_id = 2
 0:7/0 = 0
 1:7/0 = 0
 2:7/0 = 0
@@ -72,8 +83,13 @@ texture = ExtResource("2_gcyel")
 5:7/0 = 0
 6:7/0 = 0
 7:7/0 = 0
+3:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ot56v"]
+custom_data_layer_0/name = "activated"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = ""
+custom_data_layer_1/type = 0
 sources/0 = SubResource("TileSetAtlasSource_g7gbl")
 
 [sub_resource type="Resource" id="Resource_3owcc"]
@@ -92,21 +108,41 @@ metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 script = ExtResource("5_alx6q")
 metadata/_custom_type_script = "uid://bhgo8tgliywqc"
 
-[node name="Puzzle" node_paths=PackedStringArray("tiles") instance=ExtResource("1_yiny1")]
+[sub_resource type="Resource" id="Resource_j1p52"]
+script = ExtResource("5_alx6q")
+metadata/_custom_type_script = "uid://bhgo8tgliywqc"
+
+[sub_resource type="Resource" id="Resource_30kmg"]
+script = ExtResource("5_alx6q")
+metadata/_custom_type_script = "uid://bhgo8tgliywqc"
+
+[sub_resource type="Resource" id="Resource_ego48"]
+script = ExtResource("5_alx6q")
+properties = Array[PackedScene]([ExtResource("7_wbbi2")])
+metadata/_custom_type_script = "uid://bhgo8tgliywqc"
+
+[node name="Puzzle" node_paths=PackedStringArray("player", "tiles", "tilemap") instance=ExtResource("1_yiny1")]
+player = NodePath("Player")
 tiles = {
 Vector2i(-1, -1): NodePath("Tile3"),
 Vector2i(-1, 0): NodePath("Tile2"),
 Vector2i(0, -1): NodePath("Tile4"),
-Vector2i(0, 0): NodePath("Tile")
+Vector2i(0, 0): NodePath("Tile"),
+Vector2i(0, 1): NodePath("Tile6"),
+Vector2i(1, 0): NodePath("Tile5"),
+Vector2i(1, 1): NodePath("Tile7")
 }
+tilemap = NodePath("TileMapLayer")
 
-[node name="TileMapLayer" parent="." index="0"]
+[node name="TileMapLayer" parent="." index="0" node_paths=PackedStringArray("puzzle")]
 tile_map_data = PackedByteArray("AAD8//3/AAAAAAAAAAD8//7/AAAAAAEAAAD8////AAAAAAIAAAD8/wAAAAAAAAMAAAD8/wEAAAAAAAQAAAD8/wIAAAAAAAUAAAD8/wMAAAAAAAYAAAD8/wQAAAAAAAcAAAD9//3/AAABAAAAAAD9//7/AAABAAEAAAD9////AAABAAIAAAD9/wAAAAABAAMAAAD9/wEAAAABAAQAAAD9/wIAAAABAAUAAAD9/wMAAAABAAYAAAD9/wQAAAABAAcAAAD+//3/AAACAAAAAAD+//7/AAACAAEAAAD+////AAACAAIAAAD+/wAAAAACAAMAAAD+/wEAAAACAAQAAAD+/wIAAAACAAUAAAD+/wMAAAACAAYAAAD+/wQAAAACAAcAAAD///3/AAADAAAAAAD///7/AAADAAEAAAD/////AAADAAIAAAD//wAAAAADAAMAAAD//wEAAAADAAQAAAD//wIAAAADAAUAAAD//wMAAAADAAYAAAD//wQAAAADAAcAAAAAAP3/AAAEAAAAAAAAAP7/AAAEAAEAAAAAAP//AAAEAAIAAAAAAAAAAAAEAAMAAAAAAAEAAAAEAAQAAAAAAAIAAAAEAAUAAAAAAAMAAAAEAAYAAAAAAAQAAAAEAAcAAAABAP3/AAAFAAAAAAABAP7/AAAFAAEAAAABAP//AAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAFAAQAAAABAAIAAAAFAAUAAAABAAMAAAAFAAYAAAABAAQAAAAFAAcAAAACAP3/AAAGAAAAAAACAP7/AAAGAAEAAAACAP//AAAGAAIAAAACAAAAAAAGAAMAAAACAAEAAAAGAAQAAAACAAIAAAAGAAUAAAACAAMAAAAGAAYAAAACAAQAAAAGAAcAAAADAP3/AAAHAAAAAAADAP7/AAAHAAEAAAADAP//AAAHAAIAAAADAAAAAAAHAAMAAAADAAEAAAAHAAQAAAADAAIAAAAHAAUAAAADAAMAAAAHAAYAAAADAAQAAAAHAAcAAAA=")
 tile_set = SubResource("TileSet_ot56v")
+script = ExtResource("3_3owcc")
+puzzle = NodePath("..")
 
-[node name="Player" parent="." index="1" instance=ExtResource("3_g7gbl")]
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
+[node name="Player" parent="." index="2" instance=ExtResource("3_g7gbl")]
 
 [node name="Tile" parent="." index="3" instance=ExtResource("4_ot56v")]
 data = SubResource("Resource_3owcc")
@@ -121,7 +157,10 @@ data = SubResource("Resource_fmwml")
 data = SubResource("Resource_03wjf")
 
 [node name="Tile5" parent="." index="7" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_j1p52")
 
 [node name="Tile6" parent="." index="8" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_30kmg")
 
 [node name="Tile7" parent="." index="9" instance=ExtResource("4_ot56v")]
+data = SubResource("Resource_ego48")

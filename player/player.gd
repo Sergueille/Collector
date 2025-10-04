@@ -70,16 +70,31 @@ func snap():
 func _input(event: InputEvent) -> void:
 	if moving:
 		return
-	if event.is_action_pressed("up"):
-		movement_direction = Vector2i(0, -1)
-	if event.is_action_pressed("right"):
-		movement_direction = Vector2i(1, 0)
-	if event.is_action_pressed("down"):
-		movement_direction = Vector2i(0, 1)
-	if event.is_action_pressed("left"):
-		movement_direction = Vector2i(-1, 0)
+
+	var dash_direction := Vector2i.ZERO
 	
-	if event.is_action_pressed("magnet"): # Activation du magnet
-		for power_up in power_ups.values():
-			if power_up is Magnet:
-				power_up.activate()
+	if event.is_action_pressed("up"):
+		dash_direction = Vector2i(0, -1)
+	if event.is_action_pressed("right"):
+		dash_direction = Vector2i(1, 0)
+	if event.is_action_pressed("down"):
+		dash_direction = Vector2i(0, 1)
+	if event.is_action_pressed("left"):
+		dash_direction = Vector2i(-1, 0)
+	
+	# If a direction is pressed
+	if dash_direction != Vector2i.ZERO:
+		# We check if shift is maintained
+		if Input.is_action_pressed("dash"):
+			for power_up in power_ups.values():
+				if power_up is Dash:
+					power_up.dash_direction = dash_direction
+					power_up.activate()
+		else:
+			# Else : just a normal movement
+			movement_direction = dash_direction
+			
+	elif event.is_action_pressed("magnet"): # Activation du magnet
+				for power_up in power_ups.values():
+					if power_up is Magnet:
+						power_up.activate()

@@ -17,7 +17,7 @@ content_margin_bottom = 15.0
 bg_color = Color(0.15, 0.15, 0.15, 1)
 corner_radius_bottom_right = 15
 
-[node name="IngameUI" type="Control" node_paths=PackedStringArray("items")]
+[node name="IngameUI" type="Control" node_paths=PackedStringArray("items", "move_count_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjenp")
 items = [NodePath("HBoxContainer/Magnets"), NodePath("HBoxContainer/Dashes")]
+move_count_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

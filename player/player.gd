@@ -1,7 +1,8 @@
 class_name Player
 extends Node2D
 
-signal update_ui()
+signal used_powerup()
+signal move_completed()
 
 const MOVEMENT_DURATION = 0.2
 
@@ -48,8 +49,8 @@ func move():
 		snap()
 		movement_tween = null
 		moving = false
+		move_completed.emit()
 		
-	update_ui.emit()
 	#movement_finished.emit()
 
 
@@ -66,7 +67,7 @@ func use_power_up(type: Globals.PowerUp):
 				power_up.dash_direction = movement_direction
 			power_up.activate()
 	power_ups[type] -= 1
-	update_ui.emit()
+	used_powerup.emit()
 
 
 func snap():

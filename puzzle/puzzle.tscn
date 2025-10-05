@@ -33,6 +33,7 @@ player = NodePath("Player")
 tilemap = NodePath("TileMapLayer")
 ui = NodePath("CanvasLayer/IngameUI")
 tile_scene = ExtResource("2_8isiv")
+move_remaining = null
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_3gr0x")
@@ -51,4 +52,5 @@ scale = Vector2(2, 2)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
-[connection signal="update_ui" from="Player" to="." method="update_ui"]
+[connection signal="move_completed" from="Player" to="." method="on_player_move_completed"]
+[connection signal="used_powerup" from="Player" to="." method="on_player_used_powerup"]

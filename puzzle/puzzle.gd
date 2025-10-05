@@ -7,6 +7,7 @@ extends Node2D
 @export var ui: Control
 @export var tile_scene: PackedScene
 
+@export var move_remaining: int
 
 func _ready() -> void:
 	#set_level()
@@ -33,9 +34,31 @@ static func get_puzzle(node: Node) -> Puzzle:
 		parent = parent.get_parent()
 
 	return parent if parent != null else null
+	
+	
+func check_puzzle_completed() -> void:
+	
+	var ok = move_remaining >= 0
+	for pos in tiles:
+		ok = ok and (not tiles[pos].has_collectible or tiles[pos].collected)
+		
+	if ok:
+		print("Level completed!!")
 
+
+func on_player_move_completed() -> void:
+	move_remaining -= 1
+	update_ui()
+	check_puzzle_completed()
+
+func on_player_used_powerup() -> void:
+	move_remaining -= 1
+	update_ui()
+	check_puzzle_completed()
 
 func update_ui() -> void:
 	for it in ui.items:
 		it.set_use_count(player.power_ups[it.type])
+		
+	ui.update_label_ui(move_remaining)
 		

@@ -42,7 +42,7 @@ func move():
 		movement_tween.tween_property(self, "position", final_position, MOVEMENT_DURATION)
 		await movement_tween.finished
 		current_position = target_position
-		puzzle.tiles[current_position].set_activated(true)
+		puzzle.tiles[current_position].collect_collectible()
 		snap()
 		movement_tween = null
 		moving = false

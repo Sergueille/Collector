@@ -19,6 +19,8 @@ func set_level():
 		for property_scene in tiles[tile_position].properties:
 			tiles[tile_position].add_child(property_scene.instantiate())
 		tilemap.set_cell(tile_position, 0, tiles[tile_position].data.atlas_coordinates)
+		tiles[tile_position].tile_position = tile_position
+		tiles[tile_position].enable_collectible()
 	for item in ui.items:
 		item.set_use_count(player.power_ups[item.type])
 	return

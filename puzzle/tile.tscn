@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://6f8e0sh8jlue"]
+[gd_scene load_steps=4 format=3 uid="uid://6f8e0sh8jlue"]
 
 [ext_resource type="Script" uid="uid://d030bgbpo18ck" path="res://puzzle/tile.gd" id="1_wpn8y"]
+[ext_resource type="Texture2D" uid="uid://67urcwpjiew1" path="res://sprites/coll_rock_1.svg" id="2_bfitk"]
+[ext_resource type="Script" uid="uid://ddq507uoe8feh" path="res://puzzle/collectible.gd" id="2_ohhpn"]
 
-[node name="Tile" type="Node"]
+[node name="Tile" type="Node2D" node_paths=PackedStringArray("collectible")]
 script = ExtResource("1_wpn8y")
+collectible = NodePath("Collectible")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="Node" type="Node" parent="."]
+[node name="Collectible" type="Node2D" parent="."]
+script = ExtResource("2_ohhpn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectible"]
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_bfitk")

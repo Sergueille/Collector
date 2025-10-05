@@ -17,7 +17,7 @@ content_margin_bottom = 15.0
 bg_color = Color(0.15, 0.15, 0.15, 1)
 corner_radius_bottom_right = 15
 
-[node name="IngameUI" type="Control" node_paths=PackedStringArray("items", "move_count_label")]
+[node name="IngameUI2" type="Control" node_paths=PackedStringArray("items", "move_count_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,8 +67,8 @@ type = 1
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 166.0
-offset_bottom = 130.0
+offset_right = 159.0
+offset_bottom = 68.0
 script = ExtResource("5_3gw13")
 
 [node name="GoBackMenuButton" type="Button" parent="Control"]
@@ -85,4 +85,12 @@ icon = ExtResource("6_jjenp")
 icon_alignment = 1
 expand_icon = true
 
+[node name="RestartButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 73.0
+offset_right = 138.0
+offset_bottom = 60.0
+text = "Restart"
+
 [connection signal="pressed" from="Control/GoBackMenuButton" to="Control" method="_on_go_back_menu_button_pressed"]
+[connection signal="pressed" from="Control/RestartButton" to="Control" method="_on_restart_button_pressed"]

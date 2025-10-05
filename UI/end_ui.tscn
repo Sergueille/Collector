@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://dewiurcyd3k3w"]
+
+[ext_resource type="Script" uid="uid://d1wun27dk8f5o" path="res://UI/control.gd" id="1_hmh3o"]
+[ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="2_xrqmg"]
+[ext_resource type="Theme" uid="uid://m1chhbmd1cxr" path="res://UI/general_theme.tres" id="3_4gy2v"]
+[ext_resource type="Texture2D" uid="uid://cbjp1yngwkaxo" path="res://sprites/nature_bg.svg" id="4_hmh3o"]
+
+[node name="IngameUI2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hmh3o")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -574.0
+offset_right = 573.0
+offset_bottom = 366.0
+theme = ExtResource("2_xrqmg")
+theme_override_font_sizes/font_size = 76
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -574.5
+offset_top = 214.0
+offset_right = 572.5
+offset_bottom = 366.0
+theme = ExtResource("2_xrqmg")
+theme_override_font_sizes/font_size = 40
+text = "You finished the game!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 56.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Buttons"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_4gy2v")
+
+[node name="CreditButton" type="Button" parent="Buttons/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("3_4gy2v")
+text = "Level list"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -500
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -228.0
+offset_right = 262.0
+offset_bottom = 257.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_hmh3o")
+expand_mode = 1
+stretch_mode = 6
+
+[connection signal="pressed" from="Buttons/MarginContainer2/CreditButton" to="." method="_go_to_levels_screen"]

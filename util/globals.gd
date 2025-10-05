@@ -1,4 +1,4 @@
-extends Object
+extends Node
 
 # TODO find a reasonable tile size
 const TILE_SIZE = 438

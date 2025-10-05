@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b162jj13tvqpd"]
+[gd_scene load_steps=5 format=3 uid="uid://b162jj13tvqpd"]
 
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_8q1j3"]
 [ext_resource type="Script" uid="uid://c6dejcva4xn57" path="res://UI/credit/credit_control.gd" id="2_6lyng"]
 [ext_resource type="PackedScene" uid="uid://dohbawup5x1x1" path="res://UI/play_button_N.tscn" id="3_sabjs"]
+[ext_resource type="Texture2D" uid="uid://bvhmraxanwl4r" path="res://sprites/title_screen.svg" id="4_elqnq"]
 
 [node name="IngameUI" type="Control"]
 layout_mode = 3
@@ -34,6 +35,7 @@ vertical_alignment = 1
 
 [node name="CreditControl" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -54,5 +56,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Back"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -500
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -441.0
+offset_right = 316.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_elqnq")
+expand_mode = 1
+stretch_mode = 6
 
 [connection signal="pressed" from="CreditControl/PlayButtonN" to="CreditControl" method="_on_credit_button_pressed"]

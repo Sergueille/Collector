@@ -58,7 +58,10 @@ func check_puzzle_completed() -> void:
 		$GPUParticles2D.restart()
 
 func load_next_puzzle() -> void:
-	SceneSwitcher.go_to_level(LevelParser.createMapFromFile(level_id + 1))
+	if LevelParser.createMapFromFile(level_id + 1) is Object:
+		SceneSwitcher.go_to_level(LevelParser.createMapFromFile(level_id + 1))
+	else:
+		SceneSwitcher.load_scene("res://UI/end_ui.tscn")
 	
 
 func on_player_move_completed() -> void:

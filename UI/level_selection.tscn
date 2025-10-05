@@ -43,12 +43,6 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 5
 
-[node name="PlayButton1" type="Button" parent="GridContainer"]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-theme = ExtResource("3_i7e4u")
-text = "1"
-
 [node name="CreditButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1

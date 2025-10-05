@@ -24,7 +24,7 @@ func setup_collectible() -> void:
 		collectible.visible = true
 	else:
 		collectible.visible = false
-		
+
 
 func collect_collectible():
 	collected = true

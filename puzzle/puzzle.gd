@@ -6,6 +6,7 @@ extends Node2D
 @export var tilemap: TileMapLayer
 @export var ui: Control
 @export var tile_scene: PackedScene
+@export var level_size: Vector2i
 
 @export var move_remaining: int
 
@@ -24,7 +25,9 @@ func set_level():
 			tilemap.set_cell(tile_position, 0, tiles[tile_position].data.atlas_coordinates)
 	for item in ui.items:
 		item.set_use_count(player.power_ups[item.type])
-	return
+
+	$Camera2D.position = level_size * Globals.TILE_SIZE * 0.5
+	
 
 
 static func get_puzzle(node: Node) -> Puzzle:

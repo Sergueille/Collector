@@ -22,6 +22,11 @@ Globals="*res://util/globals.gd"
 SceneSwitcher="*res://util/scene_switcher.gd"
 LevelParser="*res://parser.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/scale=0.7
+
 [input]
 
 up={

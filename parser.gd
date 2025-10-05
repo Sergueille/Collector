@@ -39,6 +39,7 @@ func createMapFromFile(filename):
 	# Création d’un nouvel objet Puzzle (niveau)
 	var level = puzzle_scene.instantiate()
 	level.move_remaining = min_cost
+	level.level_size = Vector2i(width, length)
 
 	# Variables temporaires pour stocker la propriété de chaque case
 	var property

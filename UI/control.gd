@@ -3,9 +3,13 @@ extends Control
 # Charger le script parser
 # const Parser = preload("res://parser.gd")
 
+@onready var buttons_container: GridContainer = $GridContainer
+
+
 
 func _ready() -> void:
 	SceneSwitcher.current_scene_root = self
+
 
 func _on_play_button_1_pressed() -> void:
 	var level = LevelParser.createMapFromFile("levels/niveau1.txt")

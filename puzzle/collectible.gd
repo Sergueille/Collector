@@ -6,8 +6,11 @@ var initial_position: Vector2
 @export var float_frequency := 1.0 / 5.0
 @export var float_spacial_frequency := 1.0 / 200.0
 
+@export var random_orientation := true
+
 func _ready() -> void:
-	rotation_degrees = randf() * 360.0
+	if random_orientation:
+		rotation_degrees = randf() * 360.0
 	initial_position = position
 	
 	

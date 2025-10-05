@@ -18,9 +18,9 @@ func set_level():
 	for tile_position in tiles.keys():
 		for property_scene in tiles[tile_position].properties:
 			tiles[tile_position].add_child(property_scene.instantiate())
-		tilemap.set_cell(tile_position, 0, tiles[tile_position].data.atlas_coordinates)
-		tiles[tile_position].tile_position = tile_position
-		tiles[tile_position].enable_collectible()
+			
+		if tiles[tile_position].data.has_sprite:
+			tilemap.set_cell(tile_position, 0, tiles[tile_position].data.atlas_coordinates)
 	for item in ui.items:
 		item.set_use_count(player.power_ups[item.type])
 	return
@@ -35,11 +35,7 @@ static func get_puzzle(node: Node) -> Puzzle:
 	return parent if parent != null else null
 
 
-func _on_power_up_obtained(power_up: Globals.PowerUp) -> void:
-	ui.items.filter(func(x): return x.type == power_up)[0]\
-		.set_use_count(player.power_ups[power_up])
-
-
-func _on_power_up_used(power_up: Globals.PowerUp) -> void:
-	ui.items.filter(func(x): return x.type == power_up)[0]\
-		.set_use_count(player.power_ups[power_up])
+func update_ui() -> void:
+	for it in ui.items:
+		it.set_use_count(player.power_ups[it.type])
+		

@@ -5,7 +5,13 @@ extends TileProperty
 
 var power_up: Globals.PowerUp
 
+var already_picked_up := false
+
 func _apply():
+	if already_picked_up:
+		return
+	
 	var player = Puzzle.get_puzzle(self).player
 	player.add_power_up(power_up)
-	queue_free()
+	already_picked_up = true
+	# queue_free()

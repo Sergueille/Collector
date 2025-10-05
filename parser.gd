@@ -91,6 +91,7 @@ func createMapFromFile(filename):
 
 			# Initialise une nouvelle tuile dans la grille du niveau
 			level.tiles[Vector2i(i, j)] = tile_scene.instantiate()
+			level.tiles[Vector2i(i, j)].tile_position = Vector2i(i, j)
 			level.add_child(level.tiles[Vector2i(i,j)])
 
 			var prop  # Stocke le type de propriété associé à la tuile
@@ -99,20 +100,27 @@ func createMapFromFile(filename):
 			if property == "m":
 				tile_resource.properties.push_back(block_property_scene)       # "m" → mur ou bloc infranchissable
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
+				tile_resource.has_sprite = false
 			elif property == "v":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
+				level.tiles[Vector2i(i, j)].has_collectible = true # Met un collectible sur la tuile
+				tile_resource.has_sprite = true
 			elif property == "p":
 				start_position = Vector2i(i, j)  # on enregistre la position de départ
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				level.player.current_position = Vector2i(i, j) 
+				tile_resource.has_sprite = true
 			elif property == "d":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				tile_resource.properties.push_back(power_up_property_scene)
+				tile_resource.has_sprite = true
 			elif property == "a":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				tile_resource.properties.push_back(power_up_property_scene)     # "a" → autre type de bonus (à clarifier)
+				tile_resource.has_sprite = true
 			# Ajoute la propriété à la ressource et l’associe à la tuile
 			level.tiles[Vector2i(i, j)].data = tile_resource
+			level.tiles[Vector2i(i, j)].setup_collectible()
 	level.set_level()
 	return level
 	

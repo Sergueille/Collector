@@ -67,5 +67,5 @@ func update_ui() -> void:
 	
 	
 func back_to_menu() -> void:
-	
+	SceneSwitcher.go_to_level(ResourceLoader.load("res://UI/menu_ui.tscn").instantiate())
 		

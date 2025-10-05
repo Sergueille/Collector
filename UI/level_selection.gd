@@ -34,4 +34,4 @@ func _on_level_button_pressed(file_name: String) -> void:
 
 
 func _go_to_main_menu() -> void:
-	get_tree().change_scene_to_file("res://UI/menu_ui.tscn")
+	SceneSwitcher.go_to_level(ResourceLoader.load("res://UI/menu_ui.tscn").instantiate())

@@ -49,5 +49,6 @@ scale = Vector2(2, 2)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
+[connection signal="back_to_menu" from="CanvasLayer/IngameUI" to="." method="back_to_menu"]
 [connection signal="move_completed" from="Player" to="." method="on_player_move_completed"]
 [connection signal="used_powerup" from="Player" to="." method="on_player_used_powerup"]

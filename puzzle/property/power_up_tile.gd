@@ -3,7 +3,7 @@ extends TileProperty
 
 # this tile gives the player a power-up
 
-var power_up: Globals.PowerUp
+@export var power_up: Globals.PowerUp
 
 var already_picked_up := false
 

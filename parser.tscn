@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtnxj0vh4okdv"]
+[gd_scene load_steps=8 format=3 uid="uid://dtnxj0vh4okdv"]
 
 [ext_resource type="Script" uid="uid://bbporalalpn1j" path="res://parser.gd" id="1_h5g1u"]
 [ext_resource type="PackedScene" uid="uid://dfrt0ougkb0aa" path="res://puzzle/puzzle.tscn" id="2_lkqmm"]
 [ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="3_6yjkl"]
 [ext_resource type="Resource" uid="uid://cr1i60cabnem5" path="res://nature.tres" id="3_675b2"]
 [ext_resource type="PackedScene" uid="uid://dhtnprps2uj8h" path="res://puzzle/property/block.tscn" id="3_xlli3"]
-[ext_resource type="PackedScene" path="res://puzzle/property/power_up_tile.tscn" id="4_6yjkl"]
+[ext_resource type="PackedScene" uid="uid://d0la0ihmb1i71" path="res://puzzle/property/Dash.tscn" id="6_bhwlt"]
+[ext_resource type="PackedScene" uid="uid://d3id2r3dhv7d1" path="res://puzzle/property/magnet.tscn" id="7_w17ux"]
 
 [node name="Parser" type="Node"]
 script = ExtResource("1_h5g1u")
@@ -13,4 +14,5 @@ puzzle_scene = ExtResource("2_lkqmm")
 theme = ExtResource("3_675b2")
 tile_scene = ExtResource("3_6yjkl")
 block_property_scene = ExtResource("3_xlli3")
-power_up_property_scene = ExtResource("4_6yjkl")
+dash_property_scene = ExtResource("6_bhwlt")
+magnet_property_scene = ExtResource("7_w17ux")

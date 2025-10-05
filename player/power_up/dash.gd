@@ -31,5 +31,7 @@ func activate() -> void:
 		
 		#puzzle.tiles[next].collect_collectible()
 		player.current_position = next
-		player.snap()
 		next += dash_direction
+		
+		
+	player.dash_movement()

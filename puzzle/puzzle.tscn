@@ -25,7 +25,7 @@ texture_region_size = Vector2i(438, 438)
 0:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_3gr0x"]
-tile_size = Vector2i(437, 437)
+tile_size = Vector2i(436, 436)
 sources/0 = SubResource("TileSetAtlasSource_xv3xb")
 
 [sub_resource type="Gradient" id="Gradient_82356"]

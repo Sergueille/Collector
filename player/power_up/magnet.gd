@@ -28,6 +28,8 @@ func activate() -> void:
 				var t := create_tween()
 				t.tween_property(puzzle.tiles[pos].collectible_sprite, "global_position", player.position, 0.4).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 				
+				t.finished.connect(func(): puzzle.tiles[pos].collectible_sprite.visible = false)
+				
 			puzzle.tiles[pos].apply_properties()
 			puzzle.tiles[pos].collect_collectible(false)
 			

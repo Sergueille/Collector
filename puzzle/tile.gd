@@ -5,7 +5,7 @@ extends Node
 @export var collectible: Node2D
 @export var collectible_sprite: Sprite2D
 
-var tile_position: Vector2i # TODO is this necessary? Just check in the puzzle idk
+var tile_position: Vector2i
 var has_collectible: bool = false
 var collected: bool = false # Only applies if there is a collectible
 var properties: Array[TileProperty] = []
@@ -26,6 +26,10 @@ func setup_collectible() -> void:
 		collectible.position = (Vector2(tile_position) + Vector2(0.5, 0.5)) * Globals.TILE_SIZE
 		collectible_sprite.texture = textures[collectible_theme][randi() % len(textures[collectible_theme])]
 		collectible.visible = true
+		
+		var t := create_tween()
+		collectible.scale = Vector2.ZERO
+		t.tween_property(collectible, "scale", Vector2.ONE, 0.6).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
 	else:
 		collectible.visible = false
 

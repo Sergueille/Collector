@@ -2,4 +2,4 @@ extends Control
 
 
 func _on_go_back_menu_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://UI/menu_ui.tscn")
+	SceneSwitcher.go_to_level(ResourceLoader.load("res://UI/menu_ui.tscn").instantiate())

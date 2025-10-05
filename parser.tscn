@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dfrt0ougkb0aa" path="res://puzzle/puzzle.tscn" id="2_lkqmm"]
 [ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="3_6yjkl"]
 [ext_resource type="Resource" uid="uid://cr1i60cabnem5" path="res://nature.tres" id="3_675b2"]
-[ext_resource type="PackedScene" uid="uid://i0lcw04uwkwe" path="res://puzzle/property/block.tscn" id="3_xlli3"]
-[ext_resource type="PackedScene" uid="uid://cb74livavsnrp" path="res://puzzle/property/power_up_tile.tscn" id="4_6yjkl"]
+[ext_resource type="PackedScene" uid="uid://dhtnprps2uj8h" path="res://puzzle/property/block.tscn" id="3_xlli3"]
+[ext_resource type="PackedScene" path="res://puzzle/property/power_up_tile.tscn" id="4_6yjkl"]
 
 [node name="Parser" type="Node"]
 script = ExtResource("1_h5g1u")

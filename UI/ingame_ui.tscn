@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_8d257"]
 [ext_resource type="PackedScene" uid="uid://bleuowoor1sc2" path="res://UI/inventory_item.tscn" id="2_mjlmo"]
 [ext_resource type="Texture2D" uid="uid://cvnqx2rqm0ibf" path="res://sprites/dash.svg" id="4_aw6gv"]
-[ext_resource type="Script" path="res://UI/in_game_ui_control_menu.gd" id="5_3gw13"]
+[ext_resource type="Script" uid="uid://bkyuph3ffhqxq" path="res://UI/in_game_ui_control_menu.gd" id="5_3gw13"]
 [ext_resource type="StyleBox" uid="uid://kfvai4h5q45v" path="res://UI/back_theme.tres" id="6_ewjwa"]
 [ext_resource type="Texture2D" uid="uid://bx4xpkri4n6kb" path="res://sprites/back.svg" id="6_jjenp"]
 
@@ -17,7 +17,7 @@ content_margin_bottom = 15.0
 bg_color = Color(0.15, 0.15, 0.15, 1)
 corner_radius_bottom_right = 15
 
-[node name="IngameUI" type="Control" node_paths=PackedStringArray("items")]
+[node name="IngameUI" type="Control" node_paths=PackedStringArray("items", "move_count_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jjenp")
 items = [NodePath("HBoxContainer/Magnets"), NodePath("HBoxContainer/Dashes")]
+move_count_label = NodePath("Label")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

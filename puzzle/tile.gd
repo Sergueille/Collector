@@ -18,15 +18,13 @@ func _ready() -> void:
 		add_child(property_node)
 		properties.push_back(property_node)
 		
-
-
-func enable_collectible():
-	has_collectible = true
-	
-	collectible.position = (Vector2(tile_position) + Vector2(0.5, 0.5)) * Globals.TILE_SIZE
-	
-	collectible.visible = true
-	
+func setup_collectible() -> void:
+	if has_collectible:
+		collectible.position = (Vector2(tile_position) + Vector2(0.5, 0.5)) * Globals.TILE_SIZE
+		collectible.visible = true
+	else:
+		collectible.visible = false
+		
 
 func collect_collectible():
 	collected = true

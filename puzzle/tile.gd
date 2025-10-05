@@ -2,9 +2,11 @@ class_name Tile
 extends Node
 
 @export var data: TileResource
+@export var collectible: Node2D
 
 var tile_position: Vector2i # TODO is this necessary? Just check in the puzzle idk
-var activated: bool = false
+var has_collectible: bool = false
+var collected: bool = false # Only applies if there is a collectible
 var properties: Array[TileProperty] = []
 
 
@@ -15,14 +17,20 @@ func _ready() -> void:
 		var property_node = property.instantiate()
 		add_child(property_node)
 		properties.push_back(property_node)
-	return
+		
 
 
-func set_activated(activated: bool):
-	self.activated = activated
-	# TODO update tile visually
-	# it is possible to add an animation by instancing an animation
-	# scene just on top of the tile or something
+func enable_collectible():
+	has_collectible = true
+	
+	collectible.position = (Vector2(tile_position) + Vector2(0.5, 0.5)) * Globals.TILE_SIZE
+	
+	collectible.visible = true
+	
+
+func collect_collectible():
+	collected = true
+	collectible.visible = false # TODO animation
 
 
 func apply_properties() -> void:

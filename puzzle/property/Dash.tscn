@@ -1,7 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0la0ihmb1i71"]
+[gd_scene load_steps=4 format=3 uid="uid://d0la0ihmb1i71"]
 
 [ext_resource type="Script" uid="uid://bhfy5tbi0c58b" path="res://puzzle/property/power_up_tile.gd" id="1_kjiiu"]
+[ext_resource type="Texture2D" uid="uid://cvnqx2rqm0ibf" path="res://sprites/dash.svg" id="2_bmcmh"]
+[ext_resource type="Script" uid="uid://ddq507uoe8feh" path="res://puzzle/collectible.gd" id="3_8atfu"]
 
 [node name="PowerUpTile" type="Node"]
 script = ExtResource("1_kjiiu")
 power_up = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_bmcmh")
+script = ExtResource("3_8atfu")
+random_orientation = false

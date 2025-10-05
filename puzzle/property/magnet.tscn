@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3id2r3dhv7d1"]
+[gd_scene load_steps=4 format=3 uid="uid://d3id2r3dhv7d1"]
 
 [ext_resource type="Script" uid="uid://bhfy5tbi0c58b" path="res://puzzle/property/power_up_tile.gd" id="1_6g3ty"]
+[ext_resource type="Texture2D" uid="uid://bp2vmhjbfkjfg" path="res://sprites/magnet.svg" id="2_kvssc"]
+[ext_resource type="Script" uid="uid://ddq507uoe8feh" path="res://puzzle/collectible.gd" id="3_nvdej"]
 
 [node name="PowerUpTile" type="Node"]
 script = ExtResource("1_6g3ty")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_kvssc")
+script = ExtResource("3_nvdej")
+random_orientation = false

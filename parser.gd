@@ -25,7 +25,6 @@ func createMapFromFile(filename):
 	
 	# Lecture des métadonnées du niveau (nom, dimensions, coût minimal)
 	var line = file.get_line()
-	var name = line
 
 	var str_len = file.get_line()
 	var length = str_len.to_int()
@@ -43,7 +42,6 @@ func createMapFromFile(filename):
 
 	# Variables temporaires pour stocker la propriété de chaque case
 	var property
-	var start_position  # Servira à mémoriser la position de départ du joueur
 	
 	# contient les string des tuiles de la map, exemple : [[p,v,m,v], [m,v,v,v]]
 	var tab_map = []
@@ -97,8 +95,6 @@ func createMapFromFile(filename):
 			level.tiles[Vector2i(i, j)].tile_position = Vector2i(i, j)
 			level.add_child(level.tiles[Vector2i(i,j)])
 
-			var prop  # Stocke le type de propriété associé à la tuile
-
 			# Associe un type de propriété selon le caractère lu
 			if property == "m":
 				tile_resource.properties.push_back(block_property_scene)       # "m" → mur ou bloc infranchissable
@@ -109,7 +105,6 @@ func createMapFromFile(filename):
 				level.tiles[Vector2i(i, j)].has_collectible = true # Met un collectible sur la tuile
 				tile_resource.has_sprite = true
 			elif property == "p":
-				start_position = Vector2i(i, j)  # on enregistre la position de départ
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				level.player.current_position = Vector2i(i, j) 
 				tile_resource.has_sprite = true
@@ -126,13 +121,3 @@ func createMapFromFile(filename):
 			level.tiles[Vector2i(i, j)].setup_collectible()
 	level.set_level()
 	return level
-	
-	# Retourne un dictionnaire contenant toutes les informations utiles du niveau
-	return {
-		"name": name,
-		"length": length,
-		"width": width,
-		"min_cost": min_cost,
-		"start_position": start_position,
-		"level": level
-	}

@@ -1,5 +1,7 @@
 extends Control
 
+@onready var buttons_container: GridContainer = $IngameUI/ButtonsContainer/GridContainer
+var play_button_scene := preload("res://UI/play_button_N.tscn")
 
 func _ready() -> void:
 	SceneSwitcher.current_scene_root = self
@@ -15,15 +17,21 @@ func _ready() -> void:
 		dir.list_dir_end()
 
 func _create_level_button(file_name: String) -> void:
-	var button := Button.new()
-	button.text = file_name.get_basename() # ex: "niveau1"
-	$GridContainer.add_child(button)
+	var play_button = play_button_scene.instantiate()
+
+
+	play_button.text = (file_name.get_basename()).replace("niveau", "")
+	$GridContainer.add_child(play_button)
 
 	# On capture le nom du fichier dans une lambda
-	button.pressed.connect(func():
+	play_button.pressed.connect(func():
 		_on_level_button_pressed(file_name))
 
 func _on_level_button_pressed(file_name: String) -> void:
 	var level_path := "levels/%s" % file_name
 	var level = LevelParser.createMapFromFile(level_path)
 	SceneSwitcher.go_to_level(level)
+
+
+func _go_to_main_menu() -> void:
+	get_tree().change_scene_to_file("res://UI/menu_ui.tscn")

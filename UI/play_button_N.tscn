@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dohbawup5x1x1"]
+
+[ext_resource type="Theme" uid="uid://m1chhbmd1cxr" path="res://UI/general_theme.tres" id="1_a58ur"]
+
+[node name="PlayButtonN" type="Button"]
+custom_minimum_size = Vector2(70, 70)
+theme = ExtResource("1_a58ur")
+text = "1"

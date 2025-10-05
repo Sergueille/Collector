@@ -21,12 +21,12 @@ func get_tile_position(top: bool, right: bool, bottom: bool, left: bool) -> Vect
 		return get_random_from_arr(tiles_b)
 	elif right and not top and not left and not bottom:
 		return get_random_from_arr(tiles_r)
-	elif left and not right and not top and not top:
+	elif left and not right and not top and not bottom:
 		return get_random_from_arr(tiles_l)
 	elif top and left and not right and not bottom:
 		return get_random_from_arr(tiles_tl)
 	elif top and right and not left and not bottom:
-		return get_random_from_arr(tiles_r)
+		return get_random_from_arr(tiles_tr)
 	elif bottom and left and not right and not top:
 		return get_random_from_arr(tiles_bl)
 	elif bottom and right and not left and not top:

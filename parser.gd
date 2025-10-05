@@ -2,6 +2,7 @@ class_name Parser
 extends Node
 
 @export var puzzle_scene: PackedScene
+@export var theme: TileTheme
 @export var tile_scene: PackedScene
 @export var block_property_scene: PackedScene
 @export var power_up_property_scene: PackedScene
@@ -41,15 +42,52 @@ func createMapFromFile(filename):
 	var property
 	var start_position  # Servira à mémoriser la position de départ du joueur
 	
+	# contient les string des tuiles de la map, exemple : [[p,v,m,v], [m,v,v,v]]
+	var tab_map = []
+
 	# Parcourt la carte ligne par ligne et colonne par colonne
-	for j in range(length):
+	for i in range(length):
+		tab_map.append([])
 		line = file.get_line()
+		for j in range(width):
+			tab_map[i].append(line[j])
+
+
+	# Parcourt la carte de tab_map ligne par ligne et colonne par colonne
+	for j in range(length):
 		for i in range(width):
 			# Création d’une ressource de tuile
 			var tile_resource = TileResource.new()
 			
 			# Récupère le caractère représentant la tuile courante
-			property = line[i]
+			property = tab_map[j][i]
+			
+			# top right down left
+			var is_tile_vide = [true, true, true, true]
+			
+			# top
+			if j - 1 < 0:
+				is_tile_vide[0] = false
+			elif tab_map[j-1][i] == "m":
+				is_tile_vide[0] = false
+			
+			# right
+			if i + 1 > width -1:
+				is_tile_vide[1] = false
+			elif tab_map[j][i+1] == "m":
+				is_tile_vide[1] = false
+			
+			# down
+			if j + 1 > length -1:
+				is_tile_vide[2] = false
+			elif tab_map[j+1][i] == "m":
+				is_tile_vide[2] = false
+			
+			# left
+			if i - 1 < 0:
+				is_tile_vide[3] = false
+			elif tab_map[j][i-1] == "m":
+				is_tile_vide[3] = false
 
 			# Initialise une nouvelle tuile dans la grille du niveau
 			level.tiles[Vector2i(i, j)] = tile_scene.instantiate()
@@ -60,18 +98,18 @@ func createMapFromFile(filename):
 			# Associe un type de propriété selon le caractère lu
 			if property == "m":
 				tile_resource.properties.push_back(block_property_scene)       # "m" → mur ou bloc infranchissable
-				tile_resource.atlas_coordinates = Vector2i(0,0) # TEST
+				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 			elif property == "v":
-				tile_resource.atlas_coordinates = Vector2i(1,0) # TEST
+				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 			elif property == "p":
 				start_position = Vector2i(i, j)  # on enregistre la position de départ
-				tile_resource.atlas_coordinates = Vector2i(2,0) # TEST
+				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				level.player.current_position = Vector2i(i, j) 
 			elif property == "d":
-				tile_resource.atlas_coordinates = Vector2i(3,0) # TEST
+				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				tile_resource.properties.push_back(power_up_property_scene)
 			elif property == "a":
-				tile_resource.atlas_coordinates = Vector2i(4,0) # TEST
+				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				tile_resource.properties.push_back(power_up_property_scene)     # "a" → autre type de bonus (à clarifier)
 			# Ajoute la propriété à la ressource et l’associe à la tuile
 			level.tiles[Vector2i(i, j)].data = tile_resource

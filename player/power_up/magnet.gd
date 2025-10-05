@@ -24,6 +24,7 @@ func activate() -> void:
 	for offset in offsets:
 		var pos: Vector2i = center + offset
 		if puzzle.tiles.has(pos):
+			puzzle.tiles[pos].apply_properties()
 			puzzle.tiles[pos].collect_collectible()
 			
 	# NOT FINISHED : we have to check on the offsts tiles if there are any power up

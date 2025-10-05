@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0la0ihmb1i71"]
+
+[ext_resource type="Script" uid="uid://bhfy5tbi0c58b" path="res://puzzle/property/power_up_tile.gd" id="1_kjiiu"]
+
+[node name="PowerUpTile" type="Node"]
+script = ExtResource("1_kjiiu")
+power_up = 1

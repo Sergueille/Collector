@@ -5,7 +5,8 @@ extends Node
 @export var theme: TileTheme
 @export var tile_scene: PackedScene
 @export var block_property_scene: PackedScene
-@export var power_up_property_scene: PackedScene
+@export var dash_property_scene: PackedScene
+@export var magnet_property_scene: PackedScene
 
 # Fonction qui lit un fichier texte et génère une carte (Puzzle) à partir de son contenu.
 # Le fichier doit contenir :
@@ -113,11 +114,11 @@ func createMapFromFile(filename):
 				tile_resource.has_sprite = true
 			elif property == "d":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
-				tile_resource.properties.push_back(power_up_property_scene)
+				tile_resource.properties.push_back(dash_property_scene)
 				tile_resource.has_sprite = true
 			elif property == "a":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
-				tile_resource.properties.push_back(power_up_property_scene)     # "a" → autre type de bonus (à clarifier)
+				tile_resource.properties.push_back(magnet_property_scene)
 				tile_resource.has_sprite = true
 			# Ajoute la propriété à la ressource et l’associe à la tuile
 			level.tiles[Vector2i(i, j)].data = tile_resource

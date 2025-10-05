@@ -4,7 +4,7 @@ extends Node2D
 signal used_powerup()
 signal move_completed()
 
-const MOVEMENT_DURATION = 0.2
+const MOVEMENT_DURATION = 0.13
 
 @export var power_ups: Dictionary[Globals.PowerUp, int] # power-up type - quantity
 @export var sender: SignalBusSender
@@ -42,7 +42,7 @@ func move():
 			movement_tween = null
 		movement_tween = create_tween()
 		var final_position = Vector2(target_position * Globals.TILE_SIZE + Globals.TILE_OFFSET)
-		movement_tween.tween_property(self, "position", final_position, MOVEMENT_DURATION)
+		movement_tween.tween_property(self, "position", final_position, MOVEMENT_DURATION).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_QUAD)
 		await movement_tween.finished
 		current_position = target_position
 		puzzle.tiles[current_position].collect_collectible()

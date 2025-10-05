@@ -42,6 +42,9 @@ func createMapFromFile(level_id):
 	level.move_remaining = min_cost
 	level.level_size = Vector2i(width, length)
 	level.level_id = level_id
+	level.theme = theme
+	
+	var collectible_theme := randi() % (Globals.COLLECTIBLES_THEMES_COUNT)
 
 	# Variables temporaires pour stocker la propriété de chaque case
 	var property
@@ -106,6 +109,7 @@ func createMapFromFile(level_id):
 			elif property == "v":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])
 				level.tiles[Vector2i(i, j)].has_collectible = true # Met un collectible sur la tuile
+				level.tiles[Vector2i(i, j)].collectible_theme = collectible_theme
 				tile_resource.has_sprite = true
 			elif property == "p":
 				tile_resource.atlas_coordinates = theme.get_tile_position(is_tile_vide[0], is_tile_vide[1], is_tile_vide[2], is_tile_vide[3])

@@ -15,6 +15,7 @@ power_ups = Dictionary[int, int]({
 sender = NodePath("SignalBusSender")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 5
 texture = ExtResource("2_rkbax")
 
 [node name="Magnet" parent="." instance=ExtResource("3_yw30f")]

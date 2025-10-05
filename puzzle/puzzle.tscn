@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfrt0ougkb0aa"]
+[gd_scene load_steps=11 format=3 uid="uid://dfrt0ougkb0aa"]
 
 [ext_resource type="Script" uid="uid://c4v78c2w06106" path="res://puzzle/puzzle.gd" id="1_n7lcs"]
 [ext_resource type="PackedScene" uid="uid://6f8e0sh8jlue" path="res://puzzle/tile.tscn" id="2_8isiv"]
 [ext_resource type="Texture2D" uid="uid://bx1ouwyfg3hq4" path="res://sprites/tileset_aligned_1.svg" id="2_chgo7"]
 [ext_resource type="PackedScene" uid="uid://0ghb8n7ykg2l" path="res://UI/ingame_ui.tscn" id="3_xv3xb"]
 [ext_resource type="PackedScene" uid="uid://dbq18lsil75me" path="res://player/player.tscn" id="4_3gr0x"]
+[ext_resource type="Texture2D" uid="uid://cbjp1yngwkaxo" path="res://sprites/nature_bg.svg" id="6_82356"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xv3xb"]
 texture = ExtResource("2_chgo7")
@@ -27,6 +28,14 @@ texture_region_size = Vector2i(438, 438)
 tile_size = Vector2i(437, 437)
 sources/0 = SubResource("TileSetAtlasSource_xv3xb")
 
+[sub_resource type="Gradient" id="Gradient_82356"]
+offsets = PackedFloat32Array(0, 0.8246753, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_8isiv"]
+offsets = PackedFloat32Array(0.0064935065, 0.3181818, 0.53571427, 0.7305195, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 0.9333334, 0, 1, 0, 1, 0.01666665, 1, 0, 0.1333332, 1, 1, 1, 0, 0.9500003, 1)
+
 [node name="Puzzle" type="Node2D" node_paths=PackedStringArray("player", "tilemap", "ui")]
 script = ExtResource("1_n7lcs")
 player = NodePath("Player")
@@ -47,7 +56,33 @@ scale = Vector2(2, 2)
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.2, 0.2)
 
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+modulate = Color(0.7919991, 0.79199916, 0.7919991, 1)
+z_index = -100
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_82356")
+
+[node name="GPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(1, 1908)
+emitting = false
+amount = 150
+lifetime = 0.8
+one_shot = true
+speed_scale = 1.1
+explosiveness = 0.4
+emission_shape = 3
+emission_rect_extents = Vector2(4000, 200)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 9800)
+initial_velocity_min = 6000.0
+initial_velocity_max = 9000.0
+scale_amount_min = 70.0
+scale_amount_max = 70.0
+color_ramp = SubResource("Gradient_82356")
+color_initial_ramp = SubResource("Gradient_8isiv")
+
 [connection signal="back_to_menu" from="CanvasLayer/IngameUI" to="." method="back_to_menu"]
 [connection signal="restart" from="CanvasLayer/IngameUI" to="." method="restart"]
 [connection signal="move_completed" from="Player" to="." method="on_player_move_completed"]
 [connection signal="used_powerup" from="Player" to="." method="on_player_used_powerup"]
+[connection signal="finished" from="GPUParticles2D" to="." method="load_next_puzzle"]

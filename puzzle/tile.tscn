@@ -1,12 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://6f8e0sh8jlue"]
+[gd_scene load_steps=13 format=3 uid="uid://6f8e0sh8jlue"]
 
 [ext_resource type="Script" uid="uid://d030bgbpo18ck" path="res://puzzle/tile.gd" id="1_wpn8y"]
 [ext_resource type="Texture2D" uid="uid://67urcwpjiew1" path="res://sprites/coll_rock_1.svg" id="2_bfitk"]
 [ext_resource type="Script" uid="uid://ddq507uoe8feh" path="res://puzzle/collectible.gd" id="2_ohhpn"]
+[ext_resource type="Texture2D" uid="uid://tma1hegkrouv" path="res://sprites/rock_2.svg" id="3_pnsh2"]
+[ext_resource type="Texture2D" uid="uid://b4l08np3vyxi" path="res://sprites/rock_3.svg" id="4_a401y"]
+[ext_resource type="Texture2D" uid="uid://v84pw50ufbaa" path="res://sprites/stamp.svg" id="5_327k1"]
+[ext_resource type="Texture2D" uid="uid://3q1spkjbra0" path="res://sprites/stamp2.svg" id="6_en0p8"]
+[ext_resource type="Texture2D" uid="uid://bx1a7tomompxf" path="res://sprites/stamp3.svg" id="7_iutca"]
+[ext_resource type="Texture2D" uid="uid://dbxp4yq6mlxeb" path="res://sprites/card.svg" id="8_eu5l5"]
+[ext_resource type="Texture2D" uid="uid://cyiq756wiis3a" path="res://sprites/card2.svg" id="9_4py4e"]
+[ext_resource type="Texture2D" uid="uid://q8ghuxe7gxr7" path="res://sprites/card3.svg" id="10_58dqy"]
+[ext_resource type="Texture2D" uid="uid://c7bj1rq6h34ui" path="res://sprites/card4.svg" id="11_6dl7f"]
 
-[node name="Tile" type="Node2D" node_paths=PackedStringArray("collectible")]
+[node name="Tile" type="Node2D" node_paths=PackedStringArray("collectible", "collectible_sprite")]
+position = Vector2(0, 8)
 script = ExtResource("1_wpn8y")
 collectible = NodePath("Collectible")
+collectible_sprite = NodePath("Collectible/Sprite2D")
+textures = [[ExtResource("2_bfitk"), ExtResource("3_pnsh2"), ExtResource("4_a401y")], [ExtResource("5_327k1"), ExtResource("6_en0p8"), ExtResource("7_iutca")], [ExtResource("8_eu5l5"), ExtResource("9_4py4e"), ExtResource("10_58dqy"), ExtResource("11_6dl7f")]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
@@ -14,5 +26,6 @@ collectible = NodePath("Collectible")
 script = ExtResource("2_ohhpn")
 
 [node name="Sprite2D" type="Sprite2D" parent="Collectible"]
-scale = Vector2(1.4, 1.4)
+position = Vector2(1.9999998, 0)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_bfitk")

@@ -3,11 +3,14 @@ extends Node
 
 @export var data: TileResource
 @export var collectible: Node2D
+@export var collectible_sprite: Sprite2D
 
 var tile_position: Vector2i # TODO is this necessary? Just check in the puzzle idk
 var has_collectible: bool = false
 var collected: bool = false # Only applies if there is a collectible
 var properties: Array[TileProperty] = []
+var collectible_theme: int
+@export var textures: Array
 
 
 func _ready() -> void:
@@ -21,14 +24,17 @@ func _ready() -> void:
 func setup_collectible() -> void:
 	if has_collectible:
 		collectible.position = (Vector2(tile_position) + Vector2(0.5, 0.5)) * Globals.TILE_SIZE
+		collectible_sprite.texture = textures[collectible_theme][randi() % len(textures[collectible_theme])]
 		collectible.visible = true
 	else:
 		collectible.visible = false
 
 
-func collect_collectible():
+func collect_collectible(hide_sprite: bool = true):
 	collected = true
-	collectible.visible = false # TODO animation
+	
+	if hide_sprite:
+		collectible.visible = false
 
 
 func apply_properties() -> void:

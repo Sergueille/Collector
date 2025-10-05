@@ -8,6 +8,7 @@ extends Node2D
 @export var tile_scene: PackedScene
 @export var level_size: Vector2i
 @export var level_id: int
+@export var theme: TileTheme
 
 @export var move_remaining: int
 
@@ -15,6 +16,9 @@ func _ready() -> void:
 	#set_level()
 	pass  
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("restart"):
+		restart()
 
 func set_level():
 	# TODO add tiles in tilemap
@@ -28,6 +32,10 @@ func set_level():
 		item.set_use_count(player.power_ups[item.type])
 
 	$Camera2D.position = level_size * Globals.TILE_SIZE * 0.5
+	$GPUParticles2D.position = Vector2(level_size) * 0.5 * Globals.TILE_SIZE + Vector2(0, Globals.PARTICLES_OFFSET)
+	$Camera2D/Sprite2D.texture = theme.bg
+	
+	update_ui()
 	
 
 
@@ -47,8 +55,11 @@ func check_puzzle_completed() -> void:
 		ok = ok and (not tiles[pos].has_collectible or tiles[pos].collected)
 		
 	if ok:
-		SceneSwitcher.go_to_level(LevelParser.createMapFromFile(level_id + 1))
+		$GPUParticles2D.restart()
 
+func load_next_puzzle() -> void:
+	SceneSwitcher.go_to_level(LevelParser.createMapFromFile(level_id + 1))
+	
 
 func on_player_move_completed() -> void:
 	move_remaining -= 1

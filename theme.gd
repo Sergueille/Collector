@@ -1,7 +1,7 @@
 extends Resource
 class_name TileTheme
 
-@export var bg_color: Color
+@export var bg: Texture
 
 @export var tileset: TileSet
 @export var tiles_full: Array[Vector2i]

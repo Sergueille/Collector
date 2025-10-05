@@ -15,7 +15,9 @@ extends Node
 #   - une ligne avec la largeur
 #   - une ligne avec le coût minimal
 #   - puis la grille représentant les tuiles du niveau
-func createMapFromFile(filename):
+func createMapFromFile(level_id):
+	var filename := "res://levels/" + str(level_id) + ".txt"
+	
 	# Vérifie que le fichier existe avant de tenter de l'ouvrir
 	if not FileAccess.file_exists(filename):
 		return 0
@@ -39,6 +41,7 @@ func createMapFromFile(filename):
 	var level = puzzle_scene.instantiate()
 	level.move_remaining = min_cost
 	level.level_size = Vector2i(width, length)
+	level.level_id = level_id
 
 	# Variables temporaires pour stocker la propriété de chaque case
 	var property

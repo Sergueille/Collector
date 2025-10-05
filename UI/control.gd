@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _on_play_button_1_pressed() -> void:
-	var level = LevelParser.createMapFromFile("levels/niveau1.txt")
+	var level = LevelParser.createMapFromFile(1)
 	SceneSwitcher.go_to_level(level)
 
 func _go_to_levels_screen() -> void:

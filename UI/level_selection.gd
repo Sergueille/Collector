@@ -19,8 +19,8 @@ func _ready() -> void:
 
 	# Tri par numéro
 	files.sort_custom(func(a, b):
-		var num_a = int(a.get_basename().replace("niveau", ""))
-		var num_b = int(b.get_basename().replace("niveau", ""))
+		var num_a = int(a.get_basename())
+		var num_b = int(b.get_basename())
 		return num_a < num_b
 	)
 
@@ -38,8 +38,7 @@ func _create_level_button(file_name: String) -> void:
 		_on_level_button_pressed(file_name))
 
 func _on_level_button_pressed(file_name: String) -> void:
-	var level_path := "levels/%s" % file_name
-	var level = LevelParser.createMapFromFile(level_path)
+	var level = LevelParser.createMapFromFile(int(file_name.get_basename()))
 	SceneSwitcher.go_to_level(level)
 
 

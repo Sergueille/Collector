@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx1ouwyfg3hq4"
-path="res://.godot/imported/tileset_aligned_1.svg-75d317de5cd953af6d78b39c5d498121.ctex"
+uid="uid://rj874mmqv24q"
+path="res://.godot/imported/restart.svg-c8a06624637f779b4b0db63739707adb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/tileset_aligned_1.svg"
-dest_files=["res://.godot/imported/tileset_aligned_1.svg-75d317de5cd953af6d78b39c5d498121.ctex"]
+source_file="res://sprites/restart.svg"
+dest_files=["res://.godot/imported/restart.svg-c8a06624637f779b4b0db63739707adb.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -38,6 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=5.0
+svg/scale=1.0
 editor/scale_with_editor_scale=false
 editor/convert_colors_with_editor_theme=false

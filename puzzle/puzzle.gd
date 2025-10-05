@@ -7,6 +7,7 @@ extends Node2D
 @export var ui: Control
 @export var tile_scene: PackedScene
 @export var level_size: Vector2i
+@export var level_id: int
 
 @export var move_remaining: int
 
@@ -46,7 +47,7 @@ func check_puzzle_completed() -> void:
 		ok = ok and (not tiles[pos].has_collectible or tiles[pos].collected)
 		
 	if ok:
-		print("Level completed!!")
+		SceneSwitcher.go_to_level(LevelParser.createMapFromFile(level_id + 1))
 
 
 func on_player_move_completed() -> void:
@@ -67,5 +68,9 @@ func update_ui() -> void:
 	
 	
 func back_to_menu() -> void:
-	SceneSwitcher.go_to_level(ResourceLoader.load("res://UI/menu_ui.tscn").instantiate())
+	SceneSwitcher.load_scene("res://UI/menu_ui.tscn")
+		
+	
+func restart() -> void:
+	SceneSwitcher.go_to_level(LevelParser.createMapFromFile(level_id))
 		

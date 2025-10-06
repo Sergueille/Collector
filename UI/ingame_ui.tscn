@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0ghb8n7ykg2l"]
+[gd_scene load_steps=12 format=3 uid="uid://0ghb8n7ykg2l"]
 
 [ext_resource type="Script" uid="uid://dbp4txte3ljxa" path="res://UI/ingame_ui.gd" id="1_jjenp"]
 [ext_resource type="Theme" uid="uid://bprlrvabch0qk" path="res://UI/theme.tres" id="1_mjlmo"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bx4xpkri4n6kb" path="res://sprites/back.svg" id="6_jjenp"]
 [ext_resource type="StyleBox" uid="uid://o6etnbmia8ug" path="res://UI/back_theme_hover.tres" id="8_kukp7"]
 [ext_resource type="Texture2D" uid="uid://rj874mmqv24q" path="res://sprites/restart.svg" id="8_vg01s"]
+[ext_resource type="Texture2D" uid="uid://brf0secxj4qq5" path="res://sprites/tuto_1.svg" id="11_j58nu"]
 
 [node name="IngameUI2" type="Control" node_paths=PackedStringArray("items", "move_count_label")]
 layout_mode = 3
@@ -21,6 +22,9 @@ grow_vertical = 2
 script = ExtResource("1_jjenp")
 items = [NodePath("HBoxContainer/Magnets"), NodePath("HBoxContainer/Dashes")]
 move_count_label = NodePath("Label")
+tuto_images = Dictionary[int, Texture2D]({
+2: ExtResource("11_j58nu")
+})
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -33,7 +37,7 @@ offset_right = 200.0
 offset_bottom = 100.0
 theme = ExtResource("1_mjlmo")
 theme_override_font_sizes/font_size = 60
-text = "99"
+text = "J'ai perdu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -97,6 +101,20 @@ text = "  "
 icon = ExtResource("6_jjenp")
 icon_alignment = 1
 expand_icon = true
+
+[node name="Tuto" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 144.0
+offset_top = -150.0
+offset_right = 505.0
+offset_bottom = 150.0
+grow_vertical = 2
+texture = ExtResource("11_j58nu")
+expand_mode = 1
+stretch_mode = 5
 
 [connection signal="pressed" from="RestartButton" to="." method="bubble_restart"]
 [connection signal="pressed" from="Control/GoBackMenuButton" to="." method="bubble_back_to_menu"]

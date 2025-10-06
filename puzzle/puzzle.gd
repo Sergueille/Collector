@@ -37,6 +37,8 @@ func set_level():
 	
 	update_ui()
 	
+	ui.set_tuto_image(level_id)
+	
 
 
 static func get_puzzle(node: Node) -> Puzzle:

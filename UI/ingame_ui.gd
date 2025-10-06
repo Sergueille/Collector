@@ -5,6 +5,7 @@ signal restart
 
 @export var items: Array[InventoryItem]
 @export var move_count_label: Label
+@export var game_over_label: Label
 
 @export var tuto_images: Dictionary[int, Texture2D]
 
@@ -15,6 +16,8 @@ func bubble_back_to_menu() -> void:
 	back_to_menu.emit()
 
 func bubble_restart() -> void:
+	var puzzle = Puzzle.get_puzzle(self)
+	game_over_label.visible = false
 	restart.emit()
 
 func set_tuto_image(level_id: int) -> void:

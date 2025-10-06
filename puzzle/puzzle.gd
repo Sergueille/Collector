@@ -21,7 +21,8 @@ func _process(delta: float) -> void:
 		restart()
 
 func set_level():
-	# TODO add tiles in tilemap
+	if player:
+		player.set_process_input(true)
 	for tile_position in tiles.keys():
 		for property_scene in tiles[tile_position].properties:
 			tiles[tile_position].add_child(property_scene.instantiate())
@@ -51,13 +52,16 @@ static func get_puzzle(node: Node) -> Puzzle:
 	
 	
 func check_puzzle_completed() -> void:
-	
-	var ok = move_remaining >= 0
+	var has_collected_everything = true
 	for pos in tiles:
-		ok = ok and (not tiles[pos].has_collectible or tiles[pos].collected)
-		
-	if ok:
+		has_collected_everything = has_collected_everything and (not tiles[pos].has_collectible or tiles[pos].collected)
+	if has_collected_everything and move_remaining >= 0:
+		player.set_process_input(false)
 		$GPUParticles2D.restart()
+	elif move_remaining <= 0:
+		player.set_process_input(false)
+		ui.game_over_label.visible = true
+		
 
 func load_next_puzzle() -> void:
 	if LevelParser.createMapFromFile(level_id + 1) is Object:

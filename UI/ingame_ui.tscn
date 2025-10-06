@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://rj874mmqv24q" path="res://sprites/restart.svg" id="8_vg01s"]
 [ext_resource type="Texture2D" uid="uid://brf0secxj4qq5" path="res://sprites/tuto_1.svg" id="11_j58nu"]
 
-[node name="IngameUI2" type="Control" node_paths=PackedStringArray("items", "move_count_label")]
+[node name="IngameUI2" type="Control" node_paths=PackedStringArray("items", "move_count_label", "game_over_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +22,7 @@ grow_vertical = 2
 script = ExtResource("1_jjenp")
 items = [NodePath("HBoxContainer/Magnets"), NodePath("HBoxContainer/Dashes")]
 move_count_label = NodePath("Label")
+game_over_label = NodePath("GameOverLabel")
 tuto_images = Dictionary[int, Texture2D]({
 2: ExtResource("11_j58nu")
 })
@@ -115,6 +116,21 @@ grow_vertical = 2
 texture = ExtResource("11_j58nu")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -306.0
+offset_top = 116.64
+offset_right = 306.0
+offset_bottom = 165.64001
+grow_horizontal = 2
+theme = ExtResource("1_mjlmo")
+theme_override_font_sizes/font_size = 40
+text = "No moves remaining! Restart level"
 
 [connection signal="pressed" from="RestartButton" to="." method="bubble_restart"]
 [connection signal="pressed" from="Control/GoBackMenuButton" to="." method="bubble_back_to_menu"]

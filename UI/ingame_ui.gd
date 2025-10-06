@@ -20,6 +20,6 @@ func bubble_restart() -> void:
 func set_tuto_image(level_id: int) -> void:
 	if level_id in tuto_images:
 		$Tuto.texture = tuto_images[level_id]
-		$Tuto.visible = truex
+		$Tuto.visible = true
 	else:
 		$Tuto.visible = false

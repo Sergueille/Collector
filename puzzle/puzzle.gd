@@ -78,8 +78,7 @@ func on_player_used_powerup() -> void:
 
 func update_ui() -> void:
 	for it in ui.items:
-		it.set_use_count(player.power_ups[it.type])
-		
+		it.set_use_count(player.power_ups[it.type])	
 	ui.update_label_ui(move_remaining)
 	
 	

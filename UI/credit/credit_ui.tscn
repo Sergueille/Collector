@@ -23,13 +23,15 @@ offset_top = 57.0
 offset_right = 573.0
 offset_bottom = 504.0
 theme = ExtResource("1_8q1j3")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.54901963)
+theme_override_constants/shadow_outline_size = 16
 theme_override_font_sizes/font_size = 60
-text = "Jeu réalisé par
-- Alexis
-- Cosmin
-- Djildé
-- Francisco Henriques
-- Maximilien"
+text = "The game was made by
+Alexis
+Cosmin
+Djildé
+Francisco Henriques
+Maximilien"
 horizontal_alignment = 1
 vertical_alignment = 1
 

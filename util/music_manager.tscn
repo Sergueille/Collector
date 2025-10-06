@@ -5,4 +5,7 @@
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_o87gf")
-music_file = ExtResource("2_u83yj")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u83yj")
+autoplay = true
